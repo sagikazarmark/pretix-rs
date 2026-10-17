@@ -1,6 +1,6 @@
 # pretix-webhook
 
-[![ci](https://img.shields.io/github/actions/workflow/status/sagikazarmark/pretix-webhook/dagger.yaml?style=flat-square&label=ci)](https://github.com/sagikazarmark/pretix-webhook/actions/workflows/dagger.yaml)
+[![ci](https://img.shields.io/github/actions/workflow/status/sagikazarmark/pretix-webhook/ci.yaml?style=flat-square&label=ci)](https://github.com/sagikazarmark/pretix-webhook/actions/workflows/ci.yaml)
 [![openssf scorecard](https://api.securityscorecards.dev/projects/github.com/sagikazarmark/pretix-webhook/badge?style=flat-square)](https://securityscorecards.dev/viewer/?uri=github.com/sagikazarmark/pretix-webhook)
 [![crates.io](https://img.shields.io/crates/v/pretix-webhook?style=flat-square)](https://crates.io/crates/pretix-webhook)
 [![docs.rs](https://img.shields.io/docsrs/pretix-webhook?style=flat-square)](https://docs.rs/pretix-webhook)
@@ -118,14 +118,13 @@ idempotent.
 
 ## Development
 
-The workspace requires Rust 1.85 or newer:
+The workspace requires Rust 1.85 or newer. The [devenv](https://devenv.sh)
+shell provides the toolchain and tools; the [justfile](justfile) holds the
+recipes CI runs:
 
 ```console
-cargo fmt --all --check
-cargo clippy --workspace --all-targets --all-features --locked -- -D warnings
-cargo test --workspace --all-targets --locked
-cargo test --workspace --doc --locked
-cargo doc --workspace --no-deps --all-features --locked
+devenv shell
+just ci
 ```
 
 ## License

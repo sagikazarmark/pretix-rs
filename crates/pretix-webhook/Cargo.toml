@@ -6,7 +6,6 @@ edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 repository.workspace = true
-homepage.workspace = true
 keywords = ["pretix", "webhook", "tower"]
 categories = ["web-programming::http-server"]
 

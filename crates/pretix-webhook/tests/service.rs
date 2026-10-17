@@ -32,9 +32,9 @@ struct RecordingHandler {
 impl WebhookHandler for RecordingHandler {
     type Error = Infallible;
 
-    async fn handle(&self, event: WebhookEvent) -> Result<(), Self::Error> {
+    fn handle(&self, event: WebhookEvent) -> impl Future<Output = Result<(), Self::Error>> {
         self.events.lock().unwrap().push(event);
-        Ok(())
+        std::future::ready(Ok(()))
     }
 }
 

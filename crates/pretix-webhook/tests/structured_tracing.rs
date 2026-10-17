@@ -97,8 +97,8 @@ struct NoopHandler;
 impl WebhookHandler for NoopHandler {
     type Error = Infallible;
 
-    async fn handle(&self, _event: WebhookEvent) -> Result<(), Self::Error> {
-        Ok(())
+    fn handle(&self, _event: WebhookEvent) -> impl Future<Output = Result<(), Self::Error>> {
+        std::future::ready(Ok(()))
     }
 }
 
