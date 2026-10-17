@@ -1,17 +1,12 @@
 { pkgs, ... }:
 
 {
-  dagger = {
-    enable = true;
-    version = "v1.0.0-beta.15";
-
-    dang.enable = true;
-  };
-
   packages = with pkgs; [
-    lld
+    just
+
     cargo-audit
     cargo-deny
+    cargo-hack
     cargo-release
     cargo-watch
   ];
@@ -19,6 +14,9 @@
   languages = {
     rust = {
       enable = true;
+      channel = "stable";
+
+      lld.enable = true;
     };
   };
 }

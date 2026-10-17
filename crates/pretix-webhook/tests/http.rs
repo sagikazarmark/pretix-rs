@@ -24,9 +24,9 @@ struct RecordingHandler {
 impl WebhookHandler for RecordingHandler {
     type Error = Infallible;
 
-    async fn handle(&self, event: WebhookEvent) -> Result<(), Self::Error> {
+    fn handle(&self, event: WebhookEvent) -> impl Future<Output = Result<(), Self::Error>> {
         self.events.lock().unwrap().push(event);
-        Ok(())
+        std::future::ready(Ok(()))
     }
 }
 
@@ -443,8 +443,8 @@ struct FailingHandler;
 impl WebhookHandler for FailingHandler {
     type Error = &'static str;
 
-    async fn handle(&self, _event: WebhookEvent) -> Result<(), Self::Error> {
-        Err("downstream unavailable")
+    fn handle(&self, _event: WebhookEvent) -> impl Future<Output = Result<(), Self::Error>> {
+        std::future::ready(Err("downstream unavailable"))
     }
 }
 
