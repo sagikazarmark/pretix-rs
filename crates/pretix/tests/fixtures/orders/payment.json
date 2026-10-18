@@ -1,0 +1,10 @@
+{
+  "local_id": 1,
+  "state": "confirmed",
+  "amount": "23.00",
+  "created": "2017-12-01T10:00:00Z",
+  "payment_date": "2017-12-04T12:13:12Z",
+  "payment_url": null,
+  "details": {},
+  "provider": "banktransfer"
+}

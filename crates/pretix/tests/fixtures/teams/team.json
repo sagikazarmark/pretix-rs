@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "Admin team",
+  "all_events": true,
+  "limit_events": [],
+  "require_2fa": true,
+  "all_event_permissions": true,
+  "limit_event_permissions": [],
+  "all_organizer_permissions": false,
+  "limit_organizer_permissions": ["organizer.events:create"]
+}

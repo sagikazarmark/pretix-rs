@@ -1,0 +1,8 @@
+{
+  "detail": "Not found.",
+  "status": "error",
+  "reason": "invalid",
+  "reason_explanation": null,
+  "require_attention": false,
+  "checkin_texts": []
+}

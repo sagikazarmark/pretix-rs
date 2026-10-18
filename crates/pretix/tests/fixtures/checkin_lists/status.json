@@ -1,0 +1,39 @@
+{
+  "checkin_count": 17,
+  "position_count": 42,
+  "inside_count": 12,
+  "event": {
+    "name": "Demo Conference"
+  },
+  "items": [
+    {
+      "name": "T-Shirt",
+      "id": 1,
+      "checkin_count": 1,
+      "admission": false,
+      "position_count": 1,
+      "variations": [
+        {
+          "value": "Red",
+          "id": 1,
+          "checkin_count": 1,
+          "position_count": 12
+        },
+        {
+          "value": "Blue",
+          "id": 2,
+          "checkin_count": 4,
+          "position_count": 8
+        }
+      ]
+    },
+    {
+      "name": "Ticket",
+      "id": 2,
+      "checkin_count": 15,
+      "admission": true,
+      "position_count": 22,
+      "variations": []
+    }
+  ]
+}

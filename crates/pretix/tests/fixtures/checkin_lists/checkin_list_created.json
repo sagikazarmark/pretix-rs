@@ -1,0 +1,20 @@
+{
+  "id": 2,
+  "name": "VIP entry",
+  "checkin_count": 0,
+  "position_count": 0,
+  "all_products": false,
+  "limit_products": [
+    1,
+    2
+  ],
+  "include_pending": false,
+  "subevent": null,
+  "allow_multiple_entries": false,
+  "allow_entry_after_exit": true,
+  "addon_match": false,
+  "exit_all_at": null,
+  "rules": {},
+  "ignore_in_statistics": false,
+  "consider_tickets_used": true
+}

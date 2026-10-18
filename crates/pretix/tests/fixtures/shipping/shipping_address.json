@@ -1,0 +1,10 @@
+{
+  "company": "ACME Corp",
+  "name": "John Doe",
+  "street": "Sesame Street 12\nAp. 5",
+  "zipcode": "12345",
+  "city": "Berlin",
+  "country": "DE",
+  "state": "",
+  "gift": false
+}

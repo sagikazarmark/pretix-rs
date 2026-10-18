@@ -15,8 +15,9 @@ fmt:
     cargo fmt --all --check
 
 # Check the workspace.
+# `full` only combines `plugins` and `hosted`, so it adds nothing to the powerset.
 check:
-    cargo hack check --workspace --feature-powerset --all-targets --locked
+    cargo hack check --workspace --feature-powerset --exclude-features full --all-targets --locked
 
 # Run clippy.
 clippy:

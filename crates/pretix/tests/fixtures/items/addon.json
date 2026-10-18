@@ -1,0 +1,9 @@
+{
+  "id": 3,
+  "addon_category": 1,
+  "min_count": 0,
+  "max_count": 10,
+  "position": 1,
+  "multi_allowed": false,
+  "price_included": true
+}

@@ -1,0 +1,36 @@
+{
+  "results": [
+    {
+      "success": true,
+      "errors": null,
+      "data": {
+        "id": 1,
+        "cart_id": "XwokV8FojQviD9jhtDzKvHFdlLRNMhlfo3cNjGbuK6MUTQDT@api",
+        "item": 1,
+        "variation": null,
+        "price": "23.00",
+        "attendee_name": null,
+        "attendee_name_parts": {},
+        "attendee_email": null,
+        "voucher": null,
+        "addon_to": null,
+        "is_bundled": false,
+        "subevent": null,
+        "datetime": "2018-06-11T10:00:00Z",
+        "expires": "2018-06-11T10:00:00Z",
+        "includes_tax": true,
+        "seat": null,
+        "answers": []
+      }
+    },
+    {
+      "success": "false",
+      "errors": {
+        "non_field_errors": [
+          "There is not enough quota available on quota \"Tickets\" to perform the operation."
+        ]
+      },
+      "data": null
+    }
+  ]
+}

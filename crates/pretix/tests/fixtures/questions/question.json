@@ -1,0 +1,31 @@
+{
+  "id": 1,
+  "question": {"en": "T-Shirt size"},
+  "help_text": {"en": "Choose your preferred t-shirt-size"},
+  "type": "C",
+  "required": false,
+  "items": [1, 2],
+  "position": 1,
+  "identifier": "WY3TP9SL",
+  "ask_during_checkin": false,
+  "show_during_checkin": false,
+  "hidden": false,
+  "print_on_invoice": false,
+  "valid_number_min": null,
+  "valid_number_max": null,
+  "valid_date_min": null,
+  "valid_date_max": null,
+  "valid_datetime_min": null,
+  "valid_datetime_max": null,
+  "valid_file_portrait": false,
+  "valid_string_length_min": null,
+  "valid_string_length_max": null,
+  "dependency_question": null,
+  "dependency_value": null,
+  "dependency_values": [],
+  "options": [
+    {"id": 1, "identifier": "LVETRWVU", "position": 1, "answer": {"en": "S"}},
+    {"id": 2, "identifier": "DFEMJWMJ", "position": 2, "answer": {"en": "M"}},
+    {"id": 3, "identifier": "W9AH7RDE", "position": 3, "answer": {"en": "L"}}
+  ]
+}

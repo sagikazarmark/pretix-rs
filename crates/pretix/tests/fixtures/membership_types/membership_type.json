@@ -1,0 +1,10 @@
+{
+  "id": 2,
+  "name": {
+    "de": "Wochenkarte",
+    "en": "Week pass"
+  },
+  "transferable": false,
+  "allow_parallel_usage": false,
+  "max_usages": 7
+}

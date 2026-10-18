@@ -1,0 +1,18 @@
+{
+  "id": 1,
+  "organizer": "bigevents",
+  "identifier": "ABCDEFGH",
+  "claim_token": "e9gr8RnTvvHwm5j8",
+  "label": null,
+  "created": "2021-04-06T13:44:22.809377Z",
+  "updated": "2021-04-06T13:44:22.809377Z",
+  "type": "barcode",
+  "active": true,
+  "expires": null,
+  "customer": null,
+  "linked_orderpositions": [],
+  "linked_orderposition": null,
+  "linked_giftcard": null,
+  "notes": null,
+  "info": {}
+}

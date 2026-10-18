@@ -1,0 +1,19 @@
+{
+  "id": 1,
+  "list": 12345,
+  "mode": "placed",
+  "all_sales_channels": false,
+  "limit_sales_channels": [
+    "web"
+  ],
+  "all_products": false,
+  "limit_products": [
+    2,
+    3
+  ],
+  "limit_variations": [
+    456
+  ],
+  "all_payment_methods": true,
+  "limit_payment_methods": []
+}

@@ -1,3 +1,5 @@
+//! Mounting several independently configured webhook services on one Axum router.
+
 use std::{convert::Infallible, error::Error};
 
 use axum::{

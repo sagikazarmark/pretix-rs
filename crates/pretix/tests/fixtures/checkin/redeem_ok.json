@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "position": {
+    "id": 23442,
+    "order": "ABC12",
+    "positionid": 1,
+    "item": 1345,
+    "variation": null,
+    "price": "23.00",
+    "attendee_name": "Peter",
+    "attendee_name_parts": {
+      "full_name": "Peter"
+    },
+    "attendee_email": null,
+    "company": "Sample company",
+    "street": "Test street 12",
+    "zipcode": "12345",
+    "city": "Testington",
+    "country": "DE",
+    "state": null,
+    "voucher": null,
+    "tax_rate": "0.00",
+    "tax_rule": null,
+    "tax_value": "0.00",
+    "secret": "z3fsn8jyufm5kpk768q69gkbyr5f4h6w",
+    "addon_to": null,
+    "subevent": null,
+    "pseudonymization_id": "MQLJvANO3B",
+    "seat": null,
+    "valid_from": null,
+    "valid_until": null,
+    "blocked": null,
+    "checkins": [
+      {
+        "list": 1,
+        "type": "entry",
+        "gate": null,
+        "device": 2,
+        "device_id": 1,
+        "datetime": "2017-12-25T12:45:23Z",
+        "auto_checked_in": true,
+        "id": 1000
+      }
+    ],
+    "print_logs": [
+      {
+        "id": 1,
+        "successful": true,
+        "type": "badge",
+        "datetime": "2017-12-25T12:45:23Z",
+        "device_id": 1,
+        "source": "pretixSCAN",
+        "info": {}
+      }
+    ],
+    "answers": [
+      {
+        "question": 12,
+        "question_identifier": "WY3TP9SL",
+        "answer": "Foo",
+        "options": [],
+        "option_identifiers": []
+      }
+    ],
+    "downloads": [
+      {
+        "output": "pdf",
+        "url": "https://pretix.eu/api/v1/organizers/bigevents/events/sampleconf/orderpositions/23442/download/pdf/"
+      }
+    ],
+    "require_attention": false,
+    "order__status": "p",
+    "order__valid_if_pending": false,
+    "order__require_approval": false,
+    "order__locale": "en"
+  },
+  "require_attention": false,
+  "checkin_texts": [],
+  "list": {
+    "id": 1,
+    "name": "Default check-in list",
+    "event": "sampleconf",
+    "subevent": null,
+    "include_pending": false
+  }
+}

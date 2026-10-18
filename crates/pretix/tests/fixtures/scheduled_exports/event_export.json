@@ -1,0 +1,16 @@
+{
+  "id": 1,
+  "owner": "john@example.com",
+  "export_identifier": "orderlist",
+  "export_form_data": {"_format": "xlsx", "date_range": "week_previous"},
+  "locale": "en",
+  "mail_additional_recipients": "mary@example.org",
+  "mail_additional_recipients_cc": "",
+  "mail_additional_recipients_bcc": "",
+  "mail_subject": "Order list",
+  "mail_template": "Here is last week's order list\n\nCheers\nJohn",
+  "schedule_rrule": "DTSTART:20230118T000000\nRRULE:FREQ=WEEKLY;BYDAY=TU,WE,TH",
+  "schedule_rrule_time": "04:00:00",
+  "schedule_next_run": "2023-10-26T02:00:00Z",
+  "error_counter": 0
+}

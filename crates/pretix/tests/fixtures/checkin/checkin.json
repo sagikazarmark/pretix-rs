@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "successful": true,
+  "error_reason": null,
+  "error_explanation": null,
+  "position": 1234,
+  "datetime": "2017-12-25T12:45:23Z",
+  "created": "2017-12-25T12:45:23Z",
+  "list": 2,
+  "auto_checked_in": false,
+  "gate": null,
+  "device": null,
+  "device_id": null,
+  "type": "entry"
+}

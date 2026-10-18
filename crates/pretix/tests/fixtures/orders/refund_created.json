@@ -1,0 +1,12 @@
+{
+  "local_id": 1,
+  "state": "created",
+  "source": "admin",
+  "amount": "23.00",
+  "payment": 1,
+  "created": "2017-12-01T10:00:00Z",
+  "execution_date": null,
+  "comment": "Cancellation",
+  "details": {},
+  "provider": "manual"
+}

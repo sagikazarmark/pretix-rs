@@ -1,0 +1,137 @@
+{
+  "id": 1,
+  "name": {
+    "en": "Standard ticket"
+  },
+  "internal_name": "",
+  "all_sales_channels": false,
+  "limit_sales_channels": [
+    "web"
+  ],
+  "sales_channels": [
+    "web"
+  ],
+  "default_price": "23.00",
+  "original_price": null,
+  "category": null,
+  "active": true,
+  "description": null,
+  "free_price": false,
+  "free_price_suggestion": null,
+  "tax_rate": "0.00",
+  "tax_rule": 1,
+  "admission": false,
+  "personalized": false,
+  "issue_giftcard": false,
+  "media_policy": null,
+  "media_type": null,
+  "meta_data": {},
+  "position": 0,
+  "picture": null,
+  "available_from": null,
+  "available_from_mode": "hide",
+  "available_until": null,
+  "available_until_mode": "hide",
+  "hidden_if_available": null,
+  "hidden_if_item_available": null,
+  "hidden_if_item_available_mode": "hide",
+  "require_voucher": false,
+  "hide_without_voucher": false,
+  "allow_cancel": true,
+  "min_per_order": null,
+  "max_per_order": null,
+  "generate_tickets": null,
+  "allow_waitinglist": true,
+  "show_quota_left": null,
+  "checkin_attention": false,
+  "checkin_text": null,
+  "has_variations": true,
+  "require_approval": false,
+  "require_bundling": false,
+  "require_membership": false,
+  "require_membership_types": [],
+  "grant_membership_type": null,
+  "grant_membership_duration_like_event": true,
+  "grant_membership_duration_days": 0,
+  "grant_membership_duration_months": 0,
+  "validity_fixed_from": null,
+  "validity_fixed_until": null,
+  "validity_dynamic_duration_minutes": null,
+  "validity_dynamic_duration_hours": null,
+  "validity_dynamic_duration_days": null,
+  "validity_dynamic_duration_months": null,
+  "validity_dynamic_start_choice": false,
+  "validity_dynamic_start_choice_day_limit": null,
+  "variations": [
+    {
+      "id": 3,
+      "value": {
+        "en": "Student"
+      },
+      "default_price": "10.00",
+      "price": "10.00",
+      "original_price": null,
+      "free_price_suggestion": null,
+      "active": true,
+      "checkin_attention": false,
+      "checkin_text": null,
+      "require_approval": false,
+      "require_membership": false,
+      "require_membership_types": [],
+      "all_sales_channels": false,
+      "limit_sales_channels": [
+        "web"
+      ],
+      "sales_channels": [
+        "web"
+      ],
+      "available_from": null,
+      "available_from_mode": "hide",
+      "available_until": null,
+      "available_until_mode": "hide",
+      "hide_without_voucher": false,
+      "description": null,
+      "meta_data": {},
+      "position": 0
+    },
+    {
+      "id": 4,
+      "value": {
+        "en": "Regular"
+      },
+      "default_price": null,
+      "price": "23.00",
+      "original_price": null,
+      "free_price_suggestion": null,
+      "active": true,
+      "checkin_attention": false,
+      "checkin_text": null,
+      "require_approval": false,
+      "require_membership": false,
+      "require_membership_types": [],
+      "all_sales_channels": false,
+      "limit_sales_channels": [
+        "web"
+      ],
+      "sales_channels": [
+        "web"
+      ],
+      "available_from": null,
+      "available_from_mode": "hide",
+      "available_until": null,
+      "available_until_mode": "hide",
+      "hide_without_voucher": false,
+      "description": null,
+      "meta_data": {},
+      "position": 1
+    }
+  ],
+  "addons": [],
+  "bundles": [],
+  "program_times": [
+    {
+      "start": "2025-08-14T22:00:00Z",
+      "end": "2025-08-15T00:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": 1,
+  "name": "Color",
+  "default": "blue",
+  "required": false,
+  "protected": false,
+  "filter_public": false,
+  "public_label": {},
+  "filter_allowed": true,
+  "choices": [
+    {
+      "key": "blue",
+      "label": {
+        "en": "Blue"
+      }
+    }
+  ]
+}

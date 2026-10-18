@@ -1,0 +1,6 @@
+{
+  "id": 1,
+  "fullname": "John Doe",
+  "email": "john@example.com",
+  "require_2fa": true
+}

@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "name": "Default list",
+  "checkin_count": 123,
+  "position_count": 456,
+  "all_products": true,
+  "limit_products": [],
+  "include_pending": false,
+  "subevent": null,
+  "allow_multiple_entries": false,
+  "allow_entry_after_exit": true,
+  "exit_all_at": null,
+  "rules": {},
+  "addon_match": false,
+  "ignore_in_statistics": false,
+  "consider_tickets_used": true
+}

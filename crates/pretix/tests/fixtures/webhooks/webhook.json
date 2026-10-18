@@ -1,0 +1,9 @@
+{
+  "id": 2,
+  "enabled": true,
+  "target_url": "https://httpstat.us/200",
+  "all_events": false,
+  "limit_events": ["democon"],
+  "action_types": ["pretix.event.order.modified", "pretix.event.order.changed.*"],
+  "comment": null
+}

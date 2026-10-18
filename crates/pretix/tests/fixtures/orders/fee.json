@@ -1,0 +1,12 @@
+{
+  "id": 12,
+  "fee_type": "payment",
+  "value": "0.25",
+  "description": "",
+  "internal_type": "banktransfer",
+  "tax_rate": "19.00",
+  "tax_value": "0.04",
+  "tax_rule": 2,
+  "tax_code": "S/standard",
+  "canceled": false
+}

@@ -1,0 +1,26 @@
+{
+  "identifier": "orderlist",
+  "verbose_name": "Order data",
+  "input_parameters": [
+    {
+      "name": "_format",
+      "required": true,
+      "choices": [
+        "xlsx",
+        "orders:default",
+        "orders:excel",
+        "orders:semicolon",
+        "positions:default",
+        "positions:excel",
+        "positions:semicolon",
+        "fees:default",
+        "fees:excel",
+        "fees:semicolon"
+      ]
+    },
+    {
+      "name": "paid_only",
+      "required": false
+    }
+  ]
+}

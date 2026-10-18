@@ -1,0 +1,12 @@
+{
+  "id": 82,
+  "datetime": "2020-06-22T15:41:42.800534Z",
+  "value": "50.00",
+  "event": "democon",
+  "order": "FXQYW",
+  "text": null,
+  "acceptor": "bigevents",
+  "info": {
+    "created_by": "plugin1"
+  }
+}

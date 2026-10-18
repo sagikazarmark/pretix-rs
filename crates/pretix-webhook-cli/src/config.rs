@@ -239,15 +239,15 @@ impl Config {
             };
             let path = (prefix_is_valid && relative_path_is_valid)
                 .then(|| resolve_webhook_path(&prefix, &webhook.path).expect("validated paths"));
-            if relative_path_is_valid {
-                if let Some(error) = duplicate_route_error(
+            if relative_path_is_valid
+                && let Some(error) = duplicate_route_error(
                     &mut route_paths,
                     &webhook.path,
                     path.as_deref(),
                     route_number,
-                ) {
-                    errors.push(error);
-                }
+                )
+            {
+                errors.push(error);
             }
 
             if contains_duplicates(&webhook.allow_organizers) {
@@ -355,24 +355,38 @@ fn read_toml_config(path: &Path) -> Result<TomlConfig, ConfigError> {
 /// An invalid command-line, environment, or TOML configuration.
 #[derive(Debug, Error)]
 pub enum ConfigError {
+    /// Simple-mode inputs were combined with a TOML config file.
     #[error("simple and multi webhook settings cannot be mixed: {0}")]
     MixedMode(String),
+    /// The simple-mode flags or environment variables are invalid.
     #[error("invalid simple webhook configuration: {0}")]
     InvalidSimple(String),
+    /// The TOML config file could not be read.
     #[error("could not read TOML config {path:?}: {source}")]
     Read {
+        /// The config file path.
         path: PathBuf,
+        /// The underlying I/O error.
         #[source]
         source: std::io::Error,
     },
+    /// The TOML config file is not valid TOML or does not match the schema.
     #[error("could not parse TOML config {path:?}: {source}")]
     Toml {
+        /// The config file path.
         path: PathBuf,
+        /// The underlying parse error.
         #[source]
         source: toml::de::Error,
     },
+    /// The TOML config file parsed but failed semantic validation.
     #[error("invalid TOML config {path:?}: {message}")]
-    InvalidToml { path: PathBuf, message: String },
+    InvalidToml {
+        /// The config file path.
+        path: PathBuf,
+        /// The collected validation errors.
+        message: String,
+    },
 }
 
 fn invalid_toml_config(path: &Path, message: &dyn Display) -> ConfigError {
@@ -396,10 +410,10 @@ fn resolve_prefix(
         return file_prefix.unwrap_or("/webhook").to_owned();
     };
 
-    if let Some(file_prefix) = file_prefix {
-        if let Err(error) = validate_webhook_prefix(file_prefix) {
-            errors.push(format!("overridden TOML prefix is invalid: {error}"));
-        }
+    if let Some(file_prefix) = file_prefix
+        && let Err(error) = validate_webhook_prefix(file_prefix)
+    {
+        errors.push(format!("overridden TOML prefix is invalid: {error}"));
     }
 
     overriding_prefix
@@ -522,16 +536,19 @@ pub struct EffectiveConfig {
 }
 
 impl EffectiveConfig {
+    /// The socket address the server listens on.
     #[must_use]
     pub fn bind(&self) -> SocketAddr {
         self.bind
     }
 
+    /// The configured webhook endpoints.
     #[must_use]
     pub fn endpoints(&self) -> &[EffectiveEndpoint] {
         &self.endpoints
     }
 
+    /// Splits the configuration into its listen address and endpoints.
     #[must_use]
     pub fn into_parts(self) -> (SocketAddr, Vec<EffectiveEndpoint>) {
         (self.bind, self.endpoints)
@@ -548,21 +565,25 @@ pub struct EffectiveEndpoint {
 }
 
 impl EffectiveEndpoint {
+    /// The absolute HTTP path the endpoint is mounted at.
     #[must_use]
     pub fn path(&self) -> &str {
         &self.path
     }
 
+    /// Whether the endpoint accepts events from every organizer and event.
     #[must_use]
     pub fn is_unrestricted(&self) -> bool {
         self.unrestricted
     }
 
+    /// Whether the endpoint accepts requests without credentials.
     #[must_use]
     pub fn is_unauthenticated(&self) -> bool {
         self.unauthenticated
     }
 
+    /// Splits the endpoint into its path and webhook service builder.
     #[must_use]
     pub fn into_parts(self) -> (String, WebhookServiceBuilder) {
         (self.path, self.webhook_builder)

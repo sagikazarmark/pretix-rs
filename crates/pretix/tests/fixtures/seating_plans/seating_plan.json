@@ -1,0 +1,10 @@
+{
+  "id": 2,
+  "name": "Main plan",
+  "layout": {
+    "name": "Main plan",
+    "categories": [{"name": "Stalls", "color": "#c00"}],
+    "zones": [],
+    "size": {"width": 800, "height": 600}
+  }
+}

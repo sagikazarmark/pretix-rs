@@ -1,0 +1,30 @@
+{
+  "id": 1,
+  "value": {
+    "en": "S"
+  },
+  "active": true,
+  "checkin_attention": false,
+  "checkin_text": null,
+  "require_approval": false,
+  "require_membership": false,
+  "require_membership_hidden": false,
+  "require_membership_types": [],
+  "all_sales_channels": false,
+  "limit_sales_channels": ["web"],
+  "sales_channels": ["web"],
+  "available_from": null,
+  "available_from_mode": "hide",
+  "available_until": null,
+  "available_until_mode": "hide",
+  "hide_without_voucher": false,
+  "description": {
+    "en": "Test2"
+  },
+  "position": 0,
+  "default_price": "223.00",
+  "price": 223.0,
+  "original_price": null,
+  "free_price_suggestion": null,
+  "meta_data": {}
+}

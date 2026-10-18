@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "name": "Default layout",
+  "default": true,
+  "layout": [],
+  "background": "https://pretix.eu/media/pub/badges/1/background.pdf",
+  "item_assignments": []
+}

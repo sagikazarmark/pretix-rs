@@ -1,0 +1,14 @@
+{
+  "id": 2,
+  "customer": "EGR9SYT",
+  "membership_type": 1,
+  "testmode": false,
+  "date_start": "2021-04-19T00:00:00+02:00",
+  "date_end": "2021-04-20T00:00:00+02:00",
+  "attendee_name_parts": {
+    "_scheme": "title_given_family",
+    "family_name": "Doe",
+    "given_name": "John",
+    "title": ""
+  }
+}

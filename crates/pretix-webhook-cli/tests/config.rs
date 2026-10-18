@@ -1,3 +1,5 @@
+//! Configuration resolution from flags, environment variables, and TOML files.
+
 use std::{
     convert::Infallible,
     net::{IpAddr, Ipv4Addr, SocketAddr},

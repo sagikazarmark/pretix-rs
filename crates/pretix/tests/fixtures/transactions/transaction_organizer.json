@@ -1,0 +1,19 @@
+{
+  "id": 123,
+  "event": "sampleconf",
+  "order": "FOO",
+  "count": 1,
+  "created": "2017-12-01T10:00:00Z",
+  "datetime": "2017-12-01T10:00:00Z",
+  "item": null,
+  "variation": null,
+  "positionid": 1,
+  "price": "23.00",
+  "subevent": null,
+  "tax_code": "E",
+  "tax_rate": "0.00",
+  "tax_rule": 23,
+  "tax_value": "0.00",
+  "fee_type": null,
+  "internal_type": null
+}

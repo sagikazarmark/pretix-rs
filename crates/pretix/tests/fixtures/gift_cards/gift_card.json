@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "secret": "HLBYVELFRC77NCQY",
+  "issuance": "2020-09-18T14:17:40.971519Z",
+  "currency": "EUR",
+  "testmode": false,
+  "expires": null,
+  "conditions": null,
+  "owner_ticket": null,
+  "issuer": "bigevents",
+  "value": "13.37"
+}

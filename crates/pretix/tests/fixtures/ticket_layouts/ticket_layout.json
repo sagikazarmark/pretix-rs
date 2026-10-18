@@ -1,0 +1,25 @@
+{
+  "id": 1,
+  "name": "Default layout",
+  "default": true,
+  "layout": [
+    {
+      "type": "textarea",
+      "left": "17.50",
+      "bottom": "274.60",
+      "fontsize": "16.0",
+      "color": [0, 0, 0, 1],
+      "fontfamily": "Open Sans",
+      "bold": false,
+      "italic": false,
+      "width": "175.00",
+      "content": "event_name",
+      "text": "Sample event name",
+      "align": "left"
+    }
+  ],
+  "background": null,
+  "item_assignments": [
+    {"sales_channel": "web", "item": 1}
+  ]
+}

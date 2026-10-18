@@ -1,3 +1,5 @@
+//! Structured `tracing` instrumentation of webhook requests.
+
 #![cfg(feature = "tracing")]
 
 use std::{

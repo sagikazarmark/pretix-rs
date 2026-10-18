@@ -1,0 +1,7 @@
+{
+  "id": 2,
+  "name": "ref-code",
+  "default": "abcde",
+  "required": true,
+  "allowed_values": null
+}
