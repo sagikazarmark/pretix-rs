@@ -1,0 +1,11 @@
+{
+  "id": 2,
+  "name": "reference",
+  "default": "abcde",
+  "required": true,
+  "protected": false,
+  "filter_public": false,
+  "public_label": null,
+  "filter_allowed": true,
+  "choices": null
+}

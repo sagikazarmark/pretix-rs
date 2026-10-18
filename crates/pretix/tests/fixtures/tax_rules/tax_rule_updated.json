@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "name": {"en": "VAT"},
+  "internal_name": "VAT",
+  "code": "S/standard",
+  "rate": "20.00",
+  "price_includes_tax": true,
+  "eu_reverse_charge": false,
+  "keep_gross_if_rate_changes": false,
+  "custom_rules": null,
+  "home_country": "DE"
+}

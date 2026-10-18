@@ -1,0 +1,143 @@
+{
+  "code": "ABC12",
+  "event": "sampleconf",
+  "status": "p",
+  "testmode": false,
+  "secret": "k24fiuwvu8kxz3y1",
+  "url": "https://test.pretix.eu/dummy/dummy/order/ABC12/k24fiuwvu8kxz3y1/",
+  "email": "tester@example.org",
+  "phone": "+491234567",
+  "customer": null,
+  "locale": "en",
+  "sales_channel": "web",
+  "datetime": "2017-12-01T10:00:00Z",
+  "expires": "2017-12-10T10:00:00Z",
+  "last_modified": "2017-12-01T10:00:00Z",
+  "payment_date": "2017-12-05",
+  "payment_provider": "banktransfer",
+  "fees": [],
+  "total": "23.00",
+  "tax_rounding_mode": "line",
+  "comment": "",
+  "custom_followup_at": null,
+  "checkin_attention": false,
+  "checkin_text": null,
+  "require_approval": false,
+  "valid_if_pending": false,
+  "invoice_address": {
+    "last_modified": "2017-12-01T10:00:00Z",
+    "is_business": true,
+    "company": "Sample company",
+    "name": "John Doe",
+    "name_parts": {
+      "full_name": "John Doe"
+    },
+    "street": "Test street 12",
+    "zipcode": "12345",
+    "city": "Testington",
+    "country": "DE",
+    "state": "",
+    "internal_reference": "",
+    "vat_id": "EU123456789",
+    "vat_id_validated": false,
+    "custom_field": null,
+    "transmission_type": "email",
+    "transmission_info": {}
+  },
+  "positions": [
+    {
+      "id": 23442,
+      "order": "ABC12",
+      "positionid": 1,
+      "canceled": false,
+      "item": 1345,
+      "variation": null,
+      "price": "23.00",
+      "attendee_name": "Peter",
+      "attendee_name_parts": {
+        "full_name": "Peter"
+      },
+      "attendee_email": null,
+      "company": "Sample company",
+      "street": "Test street 12",
+      "zipcode": "12345",
+      "city": "Testington",
+      "country": "DE",
+      "state": null,
+      "voucher": null,
+      "voucher_budget_use": null,
+      "tax_rate": "0.00",
+      "tax_value": "0.00",
+      "tax_rule": null,
+      "tax_code": null,
+      "secret": "z3fsn8jyufm5kpk768q69gkbyr5f4h6w",
+      "addon_to": null,
+      "subevent": null,
+      "valid_from": null,
+      "valid_until": null,
+      "blocked": null,
+      "discount": null,
+      "pseudonymization_id": "MQLJvANO3B",
+      "seat": null,
+      "checkins": [
+        {
+          "id": 1337,
+          "list": 44,
+          "type": "entry",
+          "gate": null,
+          "device": 2,
+          "device_id": 1,
+          "datetime": "2017-12-25T12:45:23Z",
+          "auto_checked_in": false
+        }
+      ],
+      "print_logs": [
+        {
+          "id": 1,
+          "type": "badge",
+          "datetime": "2017-12-25T12:45:23Z",
+          "device_id": 1,
+          "source": "pretixSCAN",
+          "info": {}
+        }
+      ],
+      "answers": [
+        {
+          "question": 12,
+          "question_identifier": "WY3TP9SL",
+          "answer": "Foo",
+          "option_identifiers": [],
+          "options": []
+        }
+      ],
+      "downloads": [
+        {
+          "output": "pdf",
+          "url": "https://pretix.eu/api/v1/organizers/bigevents/events/sampleconf/orderpositions/23442/download/pdf/"
+        }
+      ],
+      "plugin_data": {}
+    }
+  ],
+  "downloads": [
+    {
+      "output": "pdf",
+      "url": "https://pretix.eu/api/v1/organizers/bigevents/events/sampleconf/orders/ABC12/download/pdf/"
+    }
+  ],
+  "payments": [
+    {
+      "local_id": 1,
+      "state": "confirmed",
+      "amount": "23.00",
+      "created": "2017-12-01T10:00:00Z",
+      "payment_date": "2017-12-04T12:13:12Z",
+      "payment_url": null,
+      "details": {},
+      "provider": "banktransfer"
+    }
+  ],
+  "refunds": [],
+  "cancellation_date": null,
+  "plugin_data": {}
+}

@@ -1,0 +1,8 @@
+{
+  "identifier": "api.custom",
+  "label": {
+    "en": "Custom integration"
+  },
+  "type": "api",
+  "position": 2
+}

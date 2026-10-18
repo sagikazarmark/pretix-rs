@@ -1,0 +1,22 @@
+{
+  "id": 1,
+  "subevent": null,
+  "title": {
+    "en": "Concert livestream"
+  },
+  "internal_name": "Livestream (YouTube)",
+  "content_type": "link",
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "file": null,
+  "description": {
+    "en": "Watch our event live here on YouTube!"
+  },
+  "all_products": true,
+  "limit_products": [],
+  "available_from": "2020-03-22T23:00:00Z",
+  "available_until": null,
+  "position": 1,
+  "jwt_template": "{\"iss\": \"pretix.eu\", \"user\": {\"id\": \"{order_code}-{positionid}\"}}",
+  "jwt_secret": "s3cr3t",
+  "jwt_validity": 1
+}

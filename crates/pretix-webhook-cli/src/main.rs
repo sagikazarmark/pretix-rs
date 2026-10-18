@@ -1,3 +1,5 @@
+//! The `pretix-webhook` command-line webhook receiver.
+
 use std::{convert::Infallible, error::Error, process::ExitCode};
 
 use axum::{Router, routing::post_service};

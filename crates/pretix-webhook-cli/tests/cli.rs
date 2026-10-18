@@ -1,3 +1,5 @@
+//! End-to-end tests of the CLI binary's startup behavior and diagnostics.
+
 use std::{
     io::{BufRead, BufReader},
     net::TcpListener,

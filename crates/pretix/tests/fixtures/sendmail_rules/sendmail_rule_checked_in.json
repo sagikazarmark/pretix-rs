@@ -1,0 +1,21 @@
+{
+  "id": 1,
+  "enabled": false,
+  "subject": {"en": "See you tomorrow!"},
+  "template": {"en": "Don't forget your tickets, download them at {url}"},
+  "all_products": true,
+  "limit_products": [],
+  "restrict_to_status": [
+    "p",
+    "n__not_pending_approval_and_not_valid_if_pending",
+    "n__valid_if_pending"
+  ],
+  "checked_in_status": "checked_in",
+  "send_date": null,
+  "send_offset_days": 1,
+  "send_offset_time": "18:00",
+  "date_is_absolute": false,
+  "offset_to_event_end": false,
+  "offset_is_after": false,
+  "send_to": "orders"
+}

@@ -1,0 +1,27 @@
+{
+  "id": 1,
+  "name": "Aperture Science",
+  "internal_id": null,
+  "contact_name": "Dr Cave Johnson",
+  "contact_name_parts": {
+    "_scheme": "salutation_title_given_family",
+    "family_name": "Johnson",
+    "given_name": "Cave",
+    "salutation": "",
+    "title": "Dr"
+  },
+  "contact_email": "johnson@as.example.org",
+  "contact_cc_email": "miller@as.example.org,smith@as.example.org",
+  "booth": "A2",
+  "locale": "de",
+  "access_code": "VKHZ2FU84",
+  "lead_scanning_access_code": "WVK2B8PZ",
+  "lead_scanning_scope_by_device": false,
+  "allow_lead_scanning": true,
+  "allow_lead_access": true,
+  "allow_voucher_access": true,
+  "comment": "",
+  "exhibitor_tags": [
+    "Gold Sponsor"
+  ]
+}

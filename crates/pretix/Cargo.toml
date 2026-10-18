@@ -1,0 +1,60 @@
+[package]
+name = "pretix"
+version.workspace = true
+description = "Unofficial async client for the pretix REST API"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+keywords = ["pretix", "tickets", "events", "api", "client"]
+categories = ["api-bindings", "web-programming::http-client"]
+
+[features]
+default = ["rustls"]
+## Use rustls for TLS (default).
+rustls = ["reqwest/rustls"]
+## Use the platform native TLS implementation.
+native-tls = ["reqwest/native-tls"]
+## Endpoints provided by pretix plugins that are not bundled with pretix itself
+## (e.g. exhibitors, shipping, digital content, campaigns, certificates).
+plugins = []
+## Endpoints that are only available on pretix Hosted (pretix.eu).
+hosted = []
+## Enables every resource.
+full = ["plugins", "hosted"]
+
+[dependencies]
+base64 = { workspace = true }
+bon = "3.10"
+bytes = { workspace = true }
+futures-util = { version = "0.3", default-features = false, features = ["std"] }
+http = { workspace = true }
+jiff = { version = "0.2", features = ["serde"] }
+percent-encoding = "2.3"
+reqwest = { version = "0.13", default-features = false, features = ["charset", "http2", "system-proxy"] }
+rust_decimal = { version = "1.43", default-features = false, features = ["std"] }
+secrecy = "0.10"
+serde = { workspace = true }
+serde_html_form = "0.4"
+serde_json = { workspace = true }
+serde_path_to_error = "0.1"
+thiserror = { workspace = true }
+tokio = { workspace = true, features = ["time"] }
+url = { version = "2.5", features = ["serde"] }
+
+[dev-dependencies]
+pretty_assertions = "1.4"
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
+wiremock = "0.6"
+
+[[test]]
+name = "api"
+path = "tests/api/main.rs"
+required-features = []
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[lints]
+workspace = true

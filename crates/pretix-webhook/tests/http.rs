@@ -1,3 +1,5 @@
+//! HTTP-level request handling and organizer/event filtering.
+
 use std::{
     convert::Infallible,
     sync::{Arc, Mutex},

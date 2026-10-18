@@ -1,0 +1,85 @@
+{
+  "id": 23442,
+  "order": "ABC12",
+  "positionid": 1,
+  "canceled": false,
+  "item": 1345,
+  "variation": null,
+  "price": "23.00",
+  "attendee_name": "Peter",
+  "attendee_name_parts": {
+    "full_name": "Peter"
+  },
+  "attendee_email": null,
+  "voucher": null,
+  "voucher_budget_use": null,
+  "tax_rate": "0.00",
+  "tax_rule": null,
+  "tax_value": "0.00",
+  "tax_code": null,
+  "secret": "z3fsn8jyufm5kpk768q69gkbyr5f4h6w",
+  "addon_to": null,
+  "subevent": null,
+  "valid_from": "2017-12-27T10:00:00Z",
+  "valid_until": "2017-12-28T10:00:00Z",
+  "blocked": [
+    "admin",
+    "api:block1"
+  ],
+  "discount": null,
+  "pseudonymization_id": "MQLJvANO3B",
+  "seat": {
+    "id": 1,
+    "name": "Seat 12",
+    "zone_name": "Ground floor",
+    "row_name": "3",
+    "row_label": null,
+    "seat_number": "12",
+    "seat_label": null,
+    "seat_guid": "b9746230-6f31-4f43-9c8b-e5d45b1ec5f8"
+  },
+  "checkins": [
+    {
+      "id": 1337,
+      "list": 44,
+      "type": "entry",
+      "gate": null,
+      "device": 2,
+      "device_id": 1,
+      "datetime": "2017-12-25T12:45:23Z",
+      "auto_checked_in": false
+    }
+  ],
+  "print_logs": [
+    {
+      "id": 1,
+      "type": "badge",
+      "successful": true,
+      "datetime": "2017-12-25T12:45:23Z",
+      "device_id": 1,
+      "source": "pretixSCAN",
+      "info": {}
+    }
+  ],
+  "answers": [
+    {
+      "question": 12,
+      "question_identifier": "WY3TP9SL",
+      "answer": "Foo",
+      "option_identifiers": [],
+      "options": []
+    }
+  ],
+  "downloads": [
+    {
+      "output": "pdf",
+      "url": "https://pretix.eu/api/v1/organizers/bigevents/events/sampleconf/orderpositions/23442/download/pdf/"
+    }
+  ],
+  "plugin_data": {},
+  "event": "sampleconf",
+  "pdf_data": {
+    "positionid": "1",
+    "attendee_name": "Peter"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "creation": "2025-07-08T18:27:32.134368+02:00",
+  "testmode": false,
+  "sales_channel": "web",
+  "comment": "Batch for sale at the event",
+  "layout": 3,
+  "subevent": null,
+  "item": 23,
+  "variation": null,
+  "amount": 7,
+  "orders": ["TSRNN", "3FBSL", "WMDNJ", "BHW9H", "MXSUG", "DSDAP", "URLLE"]
+}

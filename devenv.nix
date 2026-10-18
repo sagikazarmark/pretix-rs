@@ -9,6 +9,10 @@
     cargo-hack
     cargo-release
     cargo-watch
+
+    # Required by the `native-tls` feature of the `pretix` crate.
+    openssl
+    pkg-config
   ];
 
   languages = {

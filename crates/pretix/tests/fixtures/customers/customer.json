@@ -1,0 +1,18 @@
+{
+  "identifier": "8WSAJCJ",
+  "external_identifier": null,
+  "email": "customer@example.org",
+  "phone": "+493012345678",
+  "name": "John Doe",
+  "name_parts": {
+    "_scheme": "full",
+    "full_name": "John Doe"
+  },
+  "is_active": true,
+  "is_verified": false,
+  "last_login": null,
+  "date_joined": "2021-04-06T13:44:22.809216Z",
+  "locale": "de",
+  "last_modified": "2021-04-06T13:44:22.809377Z",
+  "notes": null
+}

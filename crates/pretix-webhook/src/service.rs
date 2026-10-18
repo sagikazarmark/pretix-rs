@@ -1,6 +1,6 @@
 use std::{
     convert::Infallible,
-    fmt::Display,
+    fmt::{self, Debug, Display},
     future::Future,
     pin::Pin,
     sync::Arc,
@@ -42,6 +42,14 @@ impl<H> WebhookService<H> {
             handler: Arc::new(handler),
             policy,
         }
+    }
+}
+
+impl<H> Debug for WebhookService<H> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_struct("WebhookService")
+            .field("policy", &self.policy)
+            .finish_non_exhaustive()
     }
 }
 

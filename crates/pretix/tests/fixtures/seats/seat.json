@@ -1,0 +1,15 @@
+{
+  "id": 1636,
+  "subevent": null,
+  "zone_name": "Ground floor",
+  "row_name": "1",
+  "row_label": null,
+  "seat_number": "4",
+  "seat_label": null,
+  "seat_guid": "6c0e29e5-05d6-421f-99f3-afd01478ecad",
+  "product": 104,
+  "blocked": true,
+  "orderposition": null,
+  "cartposition": null,
+  "voucher": null
+}

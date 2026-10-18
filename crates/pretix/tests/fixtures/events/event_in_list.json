@@ -1,0 +1,36 @@
+{
+  "name": {"en": "Sample Conference"},
+  "slug": "sampleconf",
+  "live": false,
+  "testmode": false,
+  "currency": "EUR",
+  "date_from": "2017-12-27T10:00:00Z",
+  "date_to": null,
+  "date_admission": null,
+  "is_public": true,
+  "presale_start": null,
+  "presale_end": null,
+  "location": null,
+  "geo_lat": null,
+  "geo_lon": null,
+  "has_subevents": false,
+  "meta_data": {},
+  "seating_plan": null,
+  "seat_category_mapping": {},
+  "timezone": "Europe/Berlin",
+  "item_meta_properties": {},
+  "plugins": [
+    "pretix.plugins.banktransfer",
+    "pretix.plugins.stripe",
+    "pretix.plugins.paypal2",
+    "pretix.plugins.ticketoutputpdf"
+  ],
+  "all_sales_channels": false,
+  "limit_sales_channels": [
+    "web",
+    "pretixpos",
+    "resellers"
+  ],
+  "sales_channels": [],
+  "public_url": "https://pretix.eu/bigevents/sampleconf/"
+}

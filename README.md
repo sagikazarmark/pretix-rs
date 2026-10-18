@@ -1,50 +1,64 @@
-# pretix-webhook
+# pretix-rs
 
-[![ci](https://img.shields.io/github/actions/workflow/status/sagikazarmark/pretix-webhook/ci.yaml?style=flat-square&label=ci)](https://github.com/sagikazarmark/pretix-webhook/actions/workflows/ci.yaml)
-[![openssf scorecard](https://api.securityscorecards.dev/projects/github.com/sagikazarmark/pretix-webhook/badge?style=flat-square)](https://securityscorecards.dev/viewer/?uri=github.com/sagikazarmark/pretix-webhook)
-[![crates.io](https://img.shields.io/crates/v/pretix-webhook?style=flat-square)](https://crates.io/crates/pretix-webhook)
-[![docs.rs](https://img.shields.io/docsrs/pretix-webhook?style=flat-square)](https://docs.rs/pretix-webhook)
+[![ci](https://img.shields.io/github/actions/workflow/status/sagikazarmark/pretix-rs/ci.yaml?style=flat-square&label=ci)](https://github.com/sagikazarmark/pretix-rs/actions/workflows/ci.yaml)
+[![openssf scorecard](https://api.securityscorecards.dev/projects/github.com/sagikazarmark/pretix-rs/badge?style=flat-square)](https://securityscorecards.dev/viewer/?uri=github.com/sagikazarmark/pretix-rs)
 
-**Receive and process [pretix webhooks](https://docs.pretix.eu/dev/api/webhooks.html) in Rust.**
+**Unofficial Rust crates for [pretix](https://pretix.eu): a REST API client and
+webhook receivers.**
 
-## Features
+This project is not affiliated with rami.io GmbH.
 
-- Typed event payloads for core pretix webhook actions, with unknown plugin
-  actions preserving all JSON fields
-- Framework-independent Tower receiver with ordinary HTTP request and response
-  types
-- Per-service organizer/event filters and rotating HTTP Basic credentials
-- Caller-owned routing for straightforward integration with Axum and other
-  Tower-compatible applications
-- Built-in request body limits and retry-aware HTTP response mapping
-- Optional structured `tracing` instrumentation
-- Ready-to-run CLI server with flag, environment variable, and TOML configuration
+## Crates
 
-The workspace contains three crates:
+| Crate | Description | |
+|-------|-------------|-|
+| [`pretix`](crates/pretix) | Async client for the pretix REST API | [![crates.io](https://img.shields.io/crates/v/pretix?style=flat-square)](https://crates.io/crates/pretix) [![docs.rs](https://img.shields.io/docsrs/pretix?style=flat-square)](https://docs.rs/pretix) |
+| [`pretix-webhook`](crates/pretix-webhook) | Framework-independent Tower service for receiving webhooks | [![crates.io](https://img.shields.io/crates/v/pretix-webhook?style=flat-square)](https://crates.io/crates/pretix-webhook) [![docs.rs](https://img.shields.io/docsrs/pretix-webhook?style=flat-square)](https://docs.rs/pretix-webhook) |
+| [`pretix-webhook-events`](crates/pretix-webhook-events) | Typed webhook payloads with no HTTP dependency | [![crates.io](https://img.shields.io/crates/v/pretix-webhook-events?style=flat-square)](https://crates.io/crates/pretix-webhook-events) [![docs.rs](https://img.shields.io/docsrs/pretix-webhook-events?style=flat-square)](https://docs.rs/pretix-webhook-events) |
+| [`pretix-webhook-cli`](crates/pretix-webhook-cli) | Ready-to-run webhook receiver server | |
 
-- [`pretix-webhook-events`](crates/pretix-webhook-events): serializable typed
-  payloads with no HTTP dependency.
-- [`pretix-webhook`](crates/pretix-webhook): framework-independent Tower service,
-  policy, and HTTP Basic authentication.
-- [`pretix-webhook-cli`](crates/pretix-webhook-cli): an Axum-based native HTTP
-  server that logs accepted webhooks.
+All crates are released together and share a version number.
 
-## Quickstart
-
-Add the receiver crates, Axum, and a runtime:
+## API client
 
 ```toml
 [dependencies]
-pretix-webhook = "0.1"
-pretix-webhook-events = "0.1"
+pretix = "0.3"
+```
+
+```rust,no_run
+use pretix::Client;
+use pretix::resources::events::ListEvents;
+
+#[tokio::main]
+async fn main() -> pretix::Result<()> {
+    let client = Client::builder()
+        .base_url("https://pretix.eu/api/v1/") // or your self-hosted instance
+        .token(std::env::var("PRETIX_TOKEN").unwrap())
+        .build()?;
+
+    let events = client.organizer("bigevents").events();
+    for event in events.list(&ListEvents::default()).all().await? {
+        println!("{}", event.slug);
+    }
+    Ok(())
+}
+```
+
+Pagination, retries, idempotency keys, background jobs, and feature flags are
+covered in the [`pretix` README](crates/pretix).
+
+## Webhooks
+
+```toml
+[dependencies]
+pretix-webhook = "0.3"
+pretix-webhook-events = "0.3"
 axum = "0.8"
 tokio = { version = "1", features = ["macros", "net", "rt-multi-thread"] }
 ```
 
-Build a webhook service around an event handler, then mount it at a caller-owned
-route:
-
-```rust
+```rust,no_run
 use std::convert::Infallible;
 
 use axum::{Router, routing::post_service};
@@ -69,56 +83,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-The router owns paths, methods, and composition. `WebhookService` owns Basic
-authentication, bounded body reading, payload parsing, filtering, event
-dispatch, and response mapping.
-
-## Authentication
-
-Load credentials from your deployment's secret source and add all credentials
-that should be valid during rotation:
-
-```rust
-use pretix_webhook::{BasicAuthCredential, WebhookServiceBuilder};
-
-# let (old_password, current_password) = ("old", "current");
-let builder = WebhookServiceBuilder::new().require_basic_auth([
-    BasicAuthCredential::new("old-user", old_password),
-    BasicAuthCredential::new("current-user", current_password),
-]);
-# let _ = builder;
-```
-
-Serve authenticated endpoints through HTTPS or trusted TLS termination.
-
-## Multiple Webhooks
-
-Create one service per endpoint and mount each one with the caller's router.
-Every service can use independent filters, credentials, body limits, and event
-handlers. See the compile-checked
-[`multiple_webhooks.rs`](crates/pretix-webhook/examples/multiple_webhooks.rs)
-example.
-
-## Response Contract
-
-The receiver returns `204` on success, `400` for malformed payloads, `401` for
-failed authentication, `404` for filtered events, `413` for a body over the
-configured limit, and `500` when the event handler fails so pretix retries
-the delivery. The caller's router determines unmatched-path and unsupported
-method behavior.
-
-Pretix notifications can be duplicated, so event processing should be
-idempotent.
-
-## References
-
-- [Pretix webhook receiving and retry behavior](https://docs.pretix.eu/dev/api/webhooks.html)
-- [Pretix core webhook action types](https://docs.pretix.eu/dev/api/resources/webhooks.html)
-- [Pretix core payload builders](https://github.com/pretix/pretix/blob/master/src/pretix/api/webhooks.py)
+Authentication, filtering, and the HTTP response contract are covered in the
+[`pretix-webhook` README](crates/pretix-webhook). To receive webhooks without
+writing code, use the [CLI](crates/pretix-webhook-cli).
 
 ## Development
 
-The workspace requires Rust 1.85 or newer. The [devenv](https://devenv.sh)
+The workspace requires Rust 1.88 or newer. The [devenv](https://devenv.sh)
 shell provides the toolchain and tools; the [justfile](justfile) holds the
 recipes CI runs:
 

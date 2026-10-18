@@ -1,3 +1,5 @@
+//! Deserialization and dispatch of webhook event payloads.
+
 use std::collections::BTreeMap;
 
 use pretix_webhook_events::{

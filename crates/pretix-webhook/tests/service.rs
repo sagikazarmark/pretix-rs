@@ -1,3 +1,5 @@
+//! Behavior of the webhook service as a Tower service.
+
 use std::{
     convert::Infallible,
     pin::Pin,

@@ -1,0 +1,20 @@
+{
+  "device_id": 1,
+  "unique_serial": "UOS3GNZ27O39V3QS",
+  "initialization_token": "frkso3m2w58zuw70",
+  "all_events": false,
+  "limit_events": [
+    "museum"
+  ],
+  "revoked": false,
+  "name": "Scanner",
+  "created": "2020-09-18T14:17:40.971519Z",
+  "initialized": "2020-09-18T14:17:44.190021Z",
+  "security_profile": "full",
+  "hardware_brand": "Zebra",
+  "hardware_model": "TC25",
+  "os_name": "Android",
+  "os_version": "8.1.0",
+  "software_brand": "pretixSCAN",
+  "software_version": "1.5.1"
+}

@@ -1,0 +1,18 @@
+{
+  "device_id": 1,
+  "unique_serial": "UOS3GNZ27O39V3QS",
+  "initialization_token": "frkso3m2w58zuw70",
+  "all_events": true,
+  "limit_events": [],
+  "revoked": false,
+  "name": "Scanner",
+  "created": "2020-09-18T14:17:40.971519Z",
+  "security_profile": "full",
+  "initialized": null,
+  "hardware_brand": null,
+  "hardware_model": null,
+  "os_name": null,
+  "os_version": null,
+  "software_brand": null,
+  "software_version": null
+}

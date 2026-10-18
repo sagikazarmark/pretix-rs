@@ -1,0 +1,21 @@
+{
+  "attendee_order": "T0E7E",
+  "attendee_positionid": 1,
+  "rating": 1,
+  "notes": "",
+  "tags": [],
+  "first_upload": "2021-07-06T11:03:31.414491+01:00",
+  "data": [
+    {
+      "id": "attendee_name",
+      "label": "Attendee name",
+      "value": "Peter Miller",
+      "details": [
+        {"label": "Given name", "value": "Peter"},
+        {"label": "Family name", "value": "Miller"}
+      ]
+    }
+  ],
+  "device_name": "DEV1",
+  "device_uuid": "d8c2ec53-d602-4a08-882d-db4cf54344a2"
+}

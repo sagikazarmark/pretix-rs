@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": {"en": "Tickets"},
+  "internal_name": "",
+  "description": {"en": "Tickets are what you need to get in."},
+  "position": 1,
+  "is_addon": false,
+  "cross_selling_mode": null,
+  "cross_selling_condition": null,
+  "cross_selling_match_products": []
+}

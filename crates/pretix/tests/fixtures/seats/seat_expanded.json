@@ -1,0 +1,53 @@
+{
+  "id": 1634,
+  "subevent": null,
+  "zone_name": "Ground floor",
+  "row_name": "1",
+  "row_label": null,
+  "seat_number": "2",
+  "seat_label": null,
+  "seat_guid": "1d29fe20-8e1e-4984-b0ee-2773b0d07e07",
+  "product": 104,
+  "blocked": true,
+  "orderposition": {
+    "id": 134,
+    "order": {
+      "code": "U0HW7",
+      "event": "sampleconf"
+    },
+    "positionid": 1,
+    "item": 104,
+    "variation": 59,
+    "price": "60.00",
+    "attendee_name": "",
+    "attendee_name_parts": {
+      "_scheme": "given_family"
+    },
+    "company": null,
+    "street": null,
+    "zipcode": null,
+    "city": null,
+    "country": null,
+    "state": null,
+    "discount": null,
+    "attendee_email": null,
+    "voucher": null,
+    "tax_rate": "0.00",
+    "tax_value": "0.00",
+    "secret": "4rfgp263jduratnsvwvy6cc6r6wnptbj",
+    "addon_to": null,
+    "subevent": null,
+    "checkins": [],
+    "downloads": [],
+    "answers": [],
+    "tax_rule": null,
+    "pseudonymization_id": "ZSNYSG3URZ",
+    "canceled": false,
+    "valid_from": null,
+    "valid_until": null,
+    "blocked": null,
+    "voucher_budget_use": null
+  },
+  "cartposition": null,
+  "voucher": null
+}

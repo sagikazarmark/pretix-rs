@@ -1,0 +1,28 @@
+{
+  "id": 3,
+  "value": {
+    "en": "Student"
+  },
+  "default_price": "10.00",
+  "price": "10.00",
+  "original_price": null,
+  "free_price_suggestion": null,
+  "active": true,
+  "checkin_attention": false,
+  "checkin_text": null,
+  "require_approval": false,
+  "require_membership": false,
+  "require_membership_hidden": false,
+  "require_membership_types": [],
+  "all_sales_channels": false,
+  "limit_sales_channels": ["web"],
+  "sales_channels": ["web"],
+  "available_from": null,
+  "available_from_mode": "hide",
+  "available_until": null,
+  "available_until_mode": "hide",
+  "hide_without_voucher": false,
+  "description": null,
+  "position": 0,
+  "meta_data": {}
+}

@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "Ticket Quota",
+  "size": 200,
+  "items": [1, 2],
+  "variations": [1, 4, 5, 7],
+  "subevent": null,
+  "close_when_sold_out": false,
+  "closed": false,
+  "ignore_for_event_availability": false
+}

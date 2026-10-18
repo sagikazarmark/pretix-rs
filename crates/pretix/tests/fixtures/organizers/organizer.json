@@ -1,0 +1,8 @@
+{
+  "name": "Big Events LLC",
+  "slug": "Big Events",
+  "public_url": "https://pretix.eu/bigevents/",
+  "plugins": [
+    "pretix_datev"
+  ]
+}
