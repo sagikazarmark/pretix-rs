@@ -14,6 +14,7 @@ use crate::{Client, EventScope, ListParams, Page, Request};
 
 /// A cart position.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CartPosition {
     /// Internal ID of the cart position.
@@ -71,10 +72,15 @@ pub struct CartPosition {
 
 /// The result for one position of [`CartPositions::bulk_create`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct BulkCreateResult {
     /// Whether this position was created.
     #[serde(deserialize_with = "crate::serde_util::lenient_bool")]
+    #[cfg_attr(
+        feature = "schemars",
+        schemars(schema_with = "crate::serde_util::lenient_bool_schema")
+    )]
     pub success: bool,
     /// Validation errors, e.g. `{"non_field_errors": ["…"]}`.
     #[serde(default)]
@@ -94,6 +100,7 @@ struct BulkCreateResponse {
 /// **Experimental** in pretix. Prices and many restrictions are not validated. Set
 /// either `attendee_name` or `attendee_name_parts`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateCartPosition {
     /// Identifier of the cart; must end in `@api`. Generated if unset.
@@ -154,6 +161,7 @@ pub struct CreateCartPosition {
 ///
 /// Set either `attendee_name` or `attendee_name_parts`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateCartAddon {
     /// ID of the item.

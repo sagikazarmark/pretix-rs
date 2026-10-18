@@ -15,6 +15,7 @@ use crate::{Client, EventScope, JobStatus, ListParams, Page, Request};
 
 /// A batch of tickets for offline sale.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct OfflineSalesBatch {
     /// Internal batch ID.
@@ -44,6 +45,7 @@ pub struct OfflineSalesBatch {
 
 /// Response of [`OfflineSalesBatches::create`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct OfflineSalesBatchCreation {
     /// Where to poll for the created batch, see [`OfflineSalesBatches::check`].
@@ -52,6 +54,7 @@ pub struct OfflineSalesBatchCreation {
 
 /// Body of [`OfflineSalesBatches::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateOfflineSalesBatch {
     /// ID of the product.

@@ -6,6 +6,7 @@ use serde::{Deserialize, Serialize};
 /// A date range filter: two dates separated by `/` (either side may be open), or the
 /// name of a predefined range such as `week_this` or `month_next`.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[serde(transparent)]
 pub struct DateRange(String);
 

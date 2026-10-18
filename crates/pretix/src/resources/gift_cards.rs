@@ -12,6 +12,7 @@ use crate::{Client, ListParams, OrganizerScope, Page, Request};
 
 /// A gift card.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct GiftCard {
     /// Internal ID of the gift card.
@@ -43,6 +44,7 @@ pub struct GiftCard {
 
 /// A transaction changing the value of a gift card.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct GiftCardTransaction {
     /// Internal ID of the transaction.
@@ -74,6 +76,7 @@ string_enum! {
 
 /// Query parameters for [`GiftCards::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListGiftCards {
     /// The page to fetch (1-based).
@@ -106,6 +109,7 @@ pub struct ListGiftCards {
 
 /// A reference to an order position when setting the owner ticket of a gift card.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[serde(untagged)]
 #[non_exhaustive]
 pub enum TicketRef {
@@ -117,6 +121,7 @@ pub enum TicketRef {
 
 /// Body of [`GiftCards::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateGiftCard {
     /// Gift card code. Generated if not set.
@@ -149,6 +154,7 @@ pub struct CreateGiftCard {
 /// For nullable fields, `Some(None)` clears the value. Prefer
 /// [`GiftCards::transact`] over setting `value` to avoid race conditions.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateGiftCard {
     /// The value.
@@ -180,6 +186,7 @@ pub struct UpdateGiftCard {
 
 /// Body of [`GiftCards::transact`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct TransactGiftCard {
     /// Amount to add (positive) or remove (negative).
@@ -193,6 +200,7 @@ pub struct TransactGiftCard {
 
 /// Query parameters of [`GiftCards::get_with`] and [`GiftCards::transact_with`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct IncludeAccepted {
     /// Also find gift cards issued by other organizers whose gift cards this organizer

@@ -16,6 +16,7 @@ use crate::{Client, Error, Request, Result};
 /// links automatically, or [`Page::next_cursor`] with [`Client::page`] to do it
 /// step by step.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Page<T> {
     /// Total number of results across all pages.
@@ -77,6 +78,7 @@ impl<T> IntoIterator for Page<T> {
 /// of the *first* page for incremental synchronization: it was generated before any
 /// later page.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ResponseMeta {
     /// The `X-Page-Generated` header: the server time when the list was generated.
@@ -109,6 +111,7 @@ impl ResponseMeta {
 /// Fetch it with [`Client::page`]. Cursors can be persisted, e.g. to process a large
 /// list one page at a time in a durable workflow.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[serde(transparent)]
 pub struct PageCursor(Url);
 

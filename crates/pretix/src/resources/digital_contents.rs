@@ -12,6 +12,7 @@ use crate::{Client, EventScope, ListParams, Page, Request};
 
 /// A piece of digital content.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct DigitalContent {
     /// Internal content ID.
@@ -72,6 +73,7 @@ string_enum! {
 
 /// Body of [`DigitalContents::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateDigitalContent {
     /// The content title.
@@ -129,6 +131,7 @@ pub struct CreateDigitalContent {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateDigitalContent {
     /// The content title.

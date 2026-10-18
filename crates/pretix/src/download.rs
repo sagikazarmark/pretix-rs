@@ -9,6 +9,7 @@ use crate::{Client, Request, Result};
 
 /// A downloaded file (ticket PDF, invoice, export result, …).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Download {
     /// The `Content-Type` of the response.
@@ -17,6 +18,10 @@ pub struct Download {
     pub filename: Option<String>,
     /// The file content (base64 encoded when serialized).
     #[serde(with = "base64_bytes")]
+    #[cfg_attr(
+        feature = "schemars",
+        schemars(with = "String", extend("contentEncoding" = "base64"))
+    )]
     pub data: Bytes,
 }
 

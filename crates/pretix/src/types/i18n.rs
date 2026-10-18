@@ -8,6 +8,7 @@ use serde::{Deserialize, Serialize};
 /// {"en": "red", "de": "rot", "de-informal": "rot"}
 /// ```
 #[derive(Debug, Clone, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[serde(transparent)]
 pub struct LocalizedString(pub BTreeMap<String, String>);
 

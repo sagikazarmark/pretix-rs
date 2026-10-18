@@ -91,6 +91,52 @@ impl<'de> Deserialize<'de> for RelativeDate {
     }
 }
 
+/// The schema of the `RELDATE/…` form shared by both types.
+#[cfg(feature = "schemars")]
+fn relative_schema() -> schemars::Schema {
+    schemars::json_schema!({
+        "description": "A specification relative to an event date (`RELDATE/…`).",
+        "type": "string",
+        "pattern": format!("^{RELDATE_PREFIX}"),
+    })
+}
+
+#[cfg(feature = "schemars")]
+impl schemars::JsonSchema for RelativeDateTime {
+    fn schema_name() -> std::borrow::Cow<'static, str> {
+        "RelativeDateTime".into()
+    }
+
+    fn schema_id() -> std::borrow::Cow<'static, str> {
+        concat!(module_path!(), "::RelativeDateTime").into()
+    }
+
+    fn json_schema(generator: &mut schemars::SchemaGenerator) -> schemars::Schema {
+        schemars::json_schema!({
+            "description": "A point in time that is either absolute or relative to an event date.",
+            "anyOf": [generator.subschema_for::<Timestamp>(), relative_schema()],
+        })
+    }
+}
+
+#[cfg(feature = "schemars")]
+impl schemars::JsonSchema for RelativeDate {
+    fn schema_name() -> std::borrow::Cow<'static, str> {
+        "RelativeDate".into()
+    }
+
+    fn schema_id() -> std::borrow::Cow<'static, str> {
+        concat!(module_path!(), "::RelativeDate").into()
+    }
+
+    fn json_schema(generator: &mut schemars::SchemaGenerator) -> schemars::Schema {
+        schemars::json_schema!({
+            "description": "A date that is either absolute or relative to an event date.",
+            "anyOf": [generator.subschema_for::<Date>(), relative_schema()],
+        })
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

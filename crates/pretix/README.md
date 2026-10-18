@@ -21,7 +21,8 @@ This project is not affiliated with rami.io GmbH.
 - Background jobs (exports, ticket rendering) as single-step polls or awaited to completion.
 - Forward compatible: unknown fields are ignored, unknown enum values are preserved.
 - All futures and streams are `Send`; all response types round-trip through serde, so
-  they can be journaled by durable execution engines such as Restate.
+  they can be journaled by durable execution engines such as Restate. With the
+  `schemars` feature they also implement `JsonSchema`.
 
 ## Usage
 
@@ -82,6 +83,8 @@ their own:
 - journal one page per step using `Page::next_cursor()` and `Client::page(&cursor)`,
 - poll jobs once per step (`.await` a `JobStatus`) and sleep durably in between,
 - derive idempotency keys deterministically (e.g. from the invocation's random seed),
+- enable the `schemars` feature to use models as handler inputs and outputs when the
+  engine publishes JSON Schemas for them (e.g. Restate with its `schemars` feature),
 - map errors with `Error::is_retryable()` to retryable vs. terminal failures.
 
 ## Feature flags
@@ -93,6 +96,7 @@ their own:
 | `plugins`    | no      | Endpoints of plugins not bundled with pretix                     |
 | `hosted`     | no      | Endpoints only available on pretix Hosted                        |
 | `full`       | no      | `plugins` + `hosted`                                             |
+| `schemars`   | no      | `schemars::JsonSchema` for model, parameter and request types    |
 
 ## License
 

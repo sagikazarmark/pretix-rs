@@ -12,6 +12,7 @@ use crate::types::{Decimal, string_enum};
 
 /// An order.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Order {
     /// Order code.
@@ -106,6 +107,7 @@ pub struct Order {
 
 /// An invoice address of an order.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct InvoiceAddress {
     /// Last modification date of the address.
@@ -161,6 +163,7 @@ pub struct InvoiceAddress {
 
 /// A fee included in an order total.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct OrderFee {
     /// Internal ID of the fee record.
@@ -194,6 +197,7 @@ pub struct OrderFee {
 /// Fetch the file with [`Client::download`](crate::Client::download) or
 /// [`Client::download_job`](crate::Client::download_job).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct TicketDownload {
     /// Ticket output provider, e.g. `pdf` or `passbook`.
@@ -204,6 +208,7 @@ pub struct TicketDownload {
 
 /// An order position (a ticket or other purchased product).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct OrderPosition {
     /// Internal ID of the order position.
@@ -321,6 +326,7 @@ pub struct OrderPosition {
 /// The check-in history ([`Checkins`](crate::resources::checkin::Checkins)) uses
 /// [`checkin::Checkin`](crate::resources::checkin::Checkin) instead.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct PositionCheckin {
     /// Internal ID of the check-in event.
@@ -347,6 +353,7 @@ pub struct PositionCheckin {
 
 /// A print job of an order position, e.g. recorded by the pretix apps.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct PrintLog {
     /// Internal ID of the print job.
@@ -370,6 +377,7 @@ pub struct PrintLog {
 
 /// An answer to a user-defined question.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Answer {
     /// Internal ID of the answered question.
@@ -389,6 +397,7 @@ pub struct Answer {
 
 /// A seat assigned to an order or cart position.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct AssignedSeat {
     /// Internal ID of the seat instance.
@@ -416,6 +425,7 @@ pub struct AssignedSeat {
 
 /// A payment process of an order.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct OrderPayment {
     /// Internal ID of this payment, starting at 1 for every order.
@@ -442,6 +452,7 @@ pub struct OrderPayment {
 
 /// A refund process of an order.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct OrderRefund {
     /// Internal ID of this refund, starting at 1 for every order.

@@ -61,6 +61,10 @@
 //! The default feature set is empty. The `tracing` feature opens a
 //! `pretix_webhook` span containing the request URI path and, after parsing,
 //! the event identity. Records emitted by the handler inherit that span.
+//!
+//! The `schemars` feature enables the `schemars` feature of
+//! `pretix-webhook-events`, which implements `schemars::JsonSchema` for
+//! [`WebhookEvent`](pretix_webhook_events::WebhookEvent) and the payload types.
 
 mod builder;
 mod handler;

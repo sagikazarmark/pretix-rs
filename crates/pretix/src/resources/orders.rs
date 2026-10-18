@@ -65,6 +65,7 @@ string_enum! {
 /// To select response fields (`include`/`exclude`), use [`Orders::list_with`] or
 /// [`OrganizerOrders::list_with`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListOrders {
     /// The page to fetch (1-based).
@@ -153,6 +154,7 @@ pub struct ListOrders {
 
 /// Query parameters for [`Orders::get_with`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct GetOrder {
     /// Include canceled positions (of orders that are not fully canceled).
@@ -168,6 +170,7 @@ pub struct GetOrder {
 
 /// Query parameter of endpoints that may change quotas (`check_quotas`).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct QuotaCheck {
     /// Whether to check quotas before committing changes (default `true`).
@@ -189,6 +192,7 @@ impl QuotaCheck {
 ///
 /// Set either `name` or `name_parts`.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateInvoiceAddress {
     /// Customer company name.
@@ -250,6 +254,7 @@ pub struct CreateInvoiceAddress {
 
 /// An answer to a question in request bodies.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateAnswer {
     /// Internal ID of the question.
@@ -267,6 +272,7 @@ pub struct CreateAnswer {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateOrder {
     /// The customer email address.
@@ -328,6 +334,7 @@ pub struct UpdateOrder {
 
 /// Body of [`Orders::mark_paid`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct MarkPaid {
     /// Whether to send the payment confirmation email.
@@ -337,6 +344,7 @@ pub struct MarkPaid {
 
 /// Body of [`Orders::mark_canceled`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct MarkCanceled {
     /// Whether to notify the customer (default `true`).
@@ -353,6 +361,7 @@ pub struct MarkCanceled {
 
 /// Body of [`Orders::extend`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ExtendOrder {
     /// New payment deadline. pretix uses the end of this day in the event's time zone.
@@ -364,6 +373,7 @@ pub struct ExtendOrder {
 
 /// Body of [`Orders::deny`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct DenyOrder {
     /// Whether to notify the customer.

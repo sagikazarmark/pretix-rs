@@ -14,6 +14,7 @@ use crate::{Client, EventScope, Page, Request};
 
 /// An entry on the waiting list.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct WaitingListEntry {
     /// Internal ID of the entry.
@@ -63,6 +64,7 @@ string_enum! {
 
 /// Query parameters for [`WaitingListEntries::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListWaitingListEntries {
     /// The page to fetch (1-based).
@@ -99,6 +101,7 @@ pub struct ListWaitingListEntries {
 
 /// Body of [`WaitingListEntries::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateWaitingListEntry {
     /// Email address of the waiting person.
@@ -137,6 +140,7 @@ pub struct CreateWaitingListEntry {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateWaitingListEntry {
     /// Email address of the waiting person.

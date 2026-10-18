@@ -164,6 +164,14 @@ Payloads with a missing or invalid common envelope are rejected. Known actions
 are also validated against their typed payload and are rejected when required
 fields are missing or have the wrong type.
 
+## Feature flags
+
+The default feature set is empty. The `schemars` feature implements
+`schemars::JsonSchema` for `WebhookEvent` and every payload type, so they can be
+used where a JSON Schema is required, such as Restate handler inputs and
+outputs. The `WebhookEvent` schema is the union of all payload shapes; the
+`action` field selects the variant when deserializing.
+
 ## References
 
 - [Pretix webhook receiving and retry behavior](https://docs.pretix.eu/dev/api/webhooks.html)

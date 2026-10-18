@@ -11,6 +11,7 @@ use crate::{Client, EventScope, ListParams, Page, Request};
 
 /// A PDF ticket layout.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct TicketLayout {
     /// Internal layout ID.
@@ -30,6 +31,7 @@ pub struct TicketLayout {
 
 /// An assignment of a product to a [`TicketLayout`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct TicketLayoutAssignment {
     /// Sales channel (defaults to `web`).
@@ -40,6 +42,7 @@ pub struct TicketLayoutAssignment {
 
 /// An assignment of a product to a layout, as listed by [`TicketLayoutItems::list`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct TicketLayoutItem {
     /// Internal ID of the assignment.
@@ -54,6 +57,7 @@ pub struct TicketLayoutItem {
 
 /// Body of [`TicketLayouts::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateTicketLayout {
     /// Internal description.
@@ -74,6 +78,7 @@ pub struct CreateTicketLayout {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateTicketLayout {
     /// Internal description.
@@ -98,6 +103,7 @@ pub struct UpdateTicketLayout {
 
 /// Body of [`TicketPdfRenderer::render_batch`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct RenderBatch {
     /// The tickets to render (at most 1000).
@@ -106,6 +112,7 @@ pub struct RenderBatch {
 
 /// A ticket to render in [`RenderBatch`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct RenderBatchPart {
     /// ID of the order position to render.

@@ -17,6 +17,7 @@ use crate::{Client, EventScope, Page, Request};
 
 /// A seat.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Seat {
     /// Internal ID of the seat.
@@ -68,6 +69,7 @@ string_enum! {
 
 /// Query parameters for [`Seats::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListSeats {
     /// The page to fetch (1-based).
@@ -115,6 +117,7 @@ pub struct ListSeats {
 
 /// Body of [`Seats::update`]. Only `blocked` can be changed.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateSeat {
     /// Whether the seat is blocked.
@@ -125,6 +128,7 @@ pub struct UpdateSeat {
 /// Body of [`Seats::bulk_block`] and [`Seats::bulk_unblock`]: up to 10,000 seats,
 /// given either by `ids` or by `seat_guids`.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct BulkBlockSeats {
     /// IDs of the seats.

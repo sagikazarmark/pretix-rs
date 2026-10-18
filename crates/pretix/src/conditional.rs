@@ -9,6 +9,7 @@ use crate::Request;
 
 /// The result of a conditional request (see [`Request::if_modified_since`]).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub enum Conditional<T> {
     /// Nothing changed since the given time (`304 Not Modified`).
     NotModified,

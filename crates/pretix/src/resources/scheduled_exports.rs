@@ -17,6 +17,7 @@ use crate::{Client, EventScope, OrganizerScope, Page, Request};
 
 /// A scheduled export.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ScheduledExport {
     /// Internal ID of the schedule.
@@ -71,6 +72,7 @@ string_enum! {
 
 /// Query parameters for [`ScheduledExports::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListScheduledExports {
     /// The page to fetch (1-based).
@@ -87,6 +89,7 @@ pub struct ListScheduledExports {
 
 /// Body of [`ScheduledExports::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateScheduledExport {
     /// Identifier of the exporter to run.
@@ -133,6 +136,7 @@ pub struct CreateScheduledExport {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateScheduledExport {
     /// Identifier of the exporter to run.

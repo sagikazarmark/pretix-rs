@@ -26,6 +26,7 @@ use crate::{Client, EventScope, OrganizerScope, Page, Request, Result};
 /// Check [`CheckinResult::status`] (and [`CheckinResult::reason`]) to find out whether
 /// the attendee may enter.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CheckinResult<P = CheckinPosition> {
     /// Outcome of the check-in.
@@ -44,7 +45,7 @@ pub struct CheckinResult<P = CheckinPosition> {
     ///
     /// `P` is `serde_json::Value` for requests with `expand`, which replaces IDs with
     /// objects.
-    #[serde(default = "Option::default")]
+    #[serde(default = "Option::<P>::default")]
     pub position: Option<P>,
     /// Whether the `checkin_attention` flag is set on the item or order.
     #[serde(default)]
@@ -71,6 +72,7 @@ pub struct CheckinResult<P = CheckinPosition> {
 /// The `checkins` of the position only include check-ins of the selected list, and
 /// details of the order are included for convenience.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CheckinPosition {
     /// The order position.
@@ -95,6 +97,7 @@ pub struct CheckinPosition {
 
 /// Excerpt of a check-in list, included in a [`CheckinResult`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CheckinListExcerpt {
     /// Internal ID of the check-in list.
@@ -111,6 +114,7 @@ pub struct CheckinListExcerpt {
 
 /// The result of [`CheckinRpc::annul`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct AnnulmentResult {
     /// Always `ok`.
@@ -119,6 +123,7 @@ pub struct AnnulmentResult {
 
 /// A check-in (successful or not), as recorded in the check-in history.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Checkin {
     /// Internal ID of the check-in.
@@ -260,6 +265,7 @@ string_enum! {
 
 /// Query parameters for [`CheckinRpc::search`] and [`CheckinRpc::search_with`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct SearchTickets {
     /// The page to fetch (1-based).
@@ -298,6 +304,7 @@ pub struct SearchTickets {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub item_in: Vec<u64>,
     /// Only positions of this variation.
@@ -310,6 +317,7 @@ pub struct SearchTickets {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub variation_in: Vec<u64>,
     /// Only positions with this attendee name (including their add-ons).
@@ -330,6 +338,7 @@ pub struct SearchTickets {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub order_status_in: Vec<OrderStatus>,
     /// Only positions that have (`true`) or have not (`false`) been checked in.
@@ -345,6 +354,7 @@ pub struct SearchTickets {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub subevent_in: Vec<u64>,
     /// Only add-ons to the position with this ID.
@@ -357,6 +367,7 @@ pub struct SearchTickets {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub addon_to_in: Vec<u64>,
     /// Only positions with the voucher with this ID.
@@ -370,6 +381,7 @@ pub struct SearchTickets {
 
 /// Query parameters for [`Checkins::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListCheckins {
     /// The page to fetch (1-based).
@@ -419,6 +431,7 @@ pub struct ListCheckins {
 
 /// Body of [`CheckinRpc::redeem`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct RedeemTicket {
     /// The scanned code (the ticket's `secret`). Safe to pass untrusted input.
@@ -470,6 +483,7 @@ pub struct RedeemTicket {
 
 /// Body of [`CheckinRpc::annul`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct AnnulCheckin {
     /// `nonce` of the original check-in.

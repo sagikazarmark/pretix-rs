@@ -9,6 +9,7 @@ use crate::{Client, EventScope, ListParams, Page, Request};
 
 /// A marketing campaign with a tracking link.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Campaign {
     /// Internal campaign ID.
@@ -28,6 +29,7 @@ pub struct Campaign {
 
 /// Body of [`Campaigns::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateCampaign {
     /// An internal, human-readable name of the campaign.
@@ -46,6 +48,7 @@ pub struct CreateCampaign {
 
 /// Body of [`Campaigns::update`]. Unset fields are left unchanged.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateCampaign {
     /// The URL component of the campaign. Must be globally unique.

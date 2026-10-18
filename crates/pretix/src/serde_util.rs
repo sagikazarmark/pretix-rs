@@ -49,6 +49,21 @@ pub(crate) fn lenient_bool<'de, D: Deserializer<'de>>(deserializer: D) -> Result
     }
 }
 
+/// The JSON Schema of a [`lenient_bool`] field, for `#[schemars(schema_with = "…")]`.
+#[cfg(feature = "schemars")]
+pub(crate) fn lenient_bool_schema(generator: &mut schemars::SchemaGenerator) -> schemars::Schema {
+    if generator.contract().is_deserialize() {
+        schemars::json_schema!({
+            "anyOf": [
+                { "type": "boolean" },
+                { "type": "string", "enum": ["true", "false"] },
+            ],
+        })
+    } else {
+        generator.subschema_for::<bool>()
+    }
+}
+
 /// `true`, for `#[serde(default = "crate::serde_util::default_true")]`.
 pub(crate) fn default_true() -> bool {
     true

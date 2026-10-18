@@ -10,6 +10,7 @@ use crate::{Client, ListParams, Page, Request};
 
 /// Body of [`OrderPayments::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateOrderPayment {
     /// Payment state.
@@ -34,6 +35,7 @@ pub struct CreateOrderPayment {
 
 /// Body of [`OrderPayments::confirm`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ConfirmPayment {
     /// Whether to send the payment confirmation email.
@@ -46,6 +48,7 @@ pub struct ConfirmPayment {
 
 /// Body of [`OrderPayments::refund`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct RefundPayment {
     /// Amount to refund.

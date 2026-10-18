@@ -15,6 +15,7 @@ use crate::{Client, OrganizerScope, Page, Request};
 
 /// A reusable medium.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ReusableMedium {
     /// Internal ID of the medium.
@@ -91,6 +92,7 @@ string_enum! {
 
 /// Query parameters for [`ReusableMedia::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListReusableMedia {
     /// The page to fetch (1-based).
@@ -138,6 +140,7 @@ pub struct ListReusableMedia {
 
 /// Body of [`ReusableMedia::lookup`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct LookupMedium {
     /// Identifier of the medium.
@@ -150,6 +153,7 @@ pub struct LookupMedium {
 
 /// Body of [`ReusableMedia::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateReusableMedium {
     /// Unique identifier of the medium.
@@ -198,6 +202,7 @@ pub struct CreateReusableMedium {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateReusableMedium {
     /// Human-readable label.

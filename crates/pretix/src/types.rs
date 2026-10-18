@@ -23,7 +23,8 @@ pub use webhook::WebhookNotification;
 /// unchanged). The enum is `#[non_exhaustive]`.
 ///
 /// Generates `as_str`, `Display`, `FromStr`, `From<&str>`, `From<String>`, `AsRef<str>`
-/// and serde implementations.
+/// and serde implementations. With the `schemars` feature, the JSON Schema lists the
+/// known values and also accepts any other string.
 ///
 /// ```ignore
 /// string_enum! {
@@ -48,15 +49,21 @@ macro_rules! string_enum {
     ) => {
         $(#[$meta])*
         #[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord)]
+        #[cfg_attr(feature = "schemars", derive(::schemars::JsonSchema))]
         #[non_exhaustive]
         $vis enum $name {
             $(
                 $(#[$variant_meta])*
+                #[cfg_attr(feature = "schemars", schemars(rename = $value))]
                 $variant,
             )+
             /// A value not known to this version of the crate.
             ///
             /// Do not construct this for known values; use `From<&str>` instead.
+            #[cfg_attr(
+                feature = "schemars",
+                schemars(untagged, description = "A value not known to this version of the crate.")
+            )]
             Unrecognized(::std::string::String),
         }
 

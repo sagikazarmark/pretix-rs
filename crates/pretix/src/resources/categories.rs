@@ -11,6 +11,7 @@ use crate::{Client, EventScope, Page, Request};
 
 /// An item category.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Category {
     /// Internal ID of the category.
@@ -73,6 +74,7 @@ string_enum! {
 
 /// Query parameters for [`Categories::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListCategories {
     /// The page to fetch (1-based).
@@ -92,6 +94,7 @@ pub struct ListCategories {
 
 /// Body of [`Categories::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateCategory {
     /// The category's visible name.
@@ -129,6 +132,7 @@ pub struct CreateCategory {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateCategory {
     /// The category's visible name.

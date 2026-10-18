@@ -12,6 +12,7 @@ use crate::{Client, OrganizerScope, Page, Request};
 
 /// A webhook.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Webhook {
     /// Internal ID of the webhook.
@@ -35,6 +36,7 @@ pub struct Webhook {
 
 /// Query parameters for [`Webhooks::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListWebhooks {
     /// The page to fetch (1-based).
@@ -50,6 +52,7 @@ pub struct ListWebhooks {
 
 /// Body of [`Webhooks::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateWebhook {
     /// The URL to call.
@@ -76,6 +79,7 @@ pub struct CreateWebhook {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateWebhook {
     /// If `false`, this webhook does not receive any notifications.

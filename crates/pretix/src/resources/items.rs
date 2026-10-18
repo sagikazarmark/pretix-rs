@@ -33,6 +33,7 @@ pub use variations::{
 
 /// An item (product).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Item {
     /// Internal ID of the item.
@@ -234,6 +235,7 @@ string_enum! {
 
 /// Query parameters for [`Items::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListItems {
     /// The page to fetch (1-based).
@@ -273,6 +275,7 @@ pub struct ListItems {
 /// add-ons, bundles and program times can only be set here; use the nested endpoints
 /// to change them later.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateItem {
     /// The item's visible name.
@@ -468,6 +471,7 @@ pub struct CreateItem {
 /// Variations, add-ons, bundles and program times cannot be changed here; use the nested
 /// endpoints. For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateItem {
     /// The item's visible name.

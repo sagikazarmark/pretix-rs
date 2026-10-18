@@ -25,6 +25,7 @@ use crate::{Client, Download, EventScope, JobStatus, ListParams, Page, Request};
 
 /// A data shredder.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Shredder {
     /// Identifier of the shredder, used with [`Shredders::export`].
@@ -35,6 +36,7 @@ pub struct Shredder {
 
 /// A started shredder export, returned by [`Shredders::export`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ShredderExport {
     /// Where to download the exported data. Responds with `409` while the export is
@@ -54,6 +56,7 @@ impl ShredderExport {
 
 /// A started shredding process, returned by [`Shredders::shred`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ShredJob {
     /// Where to check the result, see [`Shredders::status`].
@@ -62,6 +65,7 @@ pub struct ShredJob {
 
 /// The outcome of a finished shredding process, see [`Shredders::status`].
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub enum ShredOutcome {
     /// The data was deleted (`200`).
@@ -74,6 +78,7 @@ pub enum ShredOutcome {
 
 /// Body of [`Shredders::export`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ExportShredders {
     /// Identifiers of the shredders to run.

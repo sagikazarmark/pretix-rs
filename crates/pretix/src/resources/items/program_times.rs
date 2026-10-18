@@ -9,6 +9,7 @@ use crate::{Client, ListParams, Page, Request};
 /// A program time slot of an item, e.g. to display separate schedules within an event.
 /// Not available for items in event series.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ItemProgramTime {
     /// Internal ID of the program time. Not included when embedded in an
@@ -27,6 +28,7 @@ pub struct ItemProgramTime {
 /// Body of [`ItemProgramTimes::create`], also used for the initial program times in
 /// [`CreateItem`](super::CreateItem).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateItemProgramTime {
     /// Start of the time slot.
@@ -43,6 +45,7 @@ pub struct CreateItemProgramTime {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateItemProgramTime {
     /// Start of the time slot.

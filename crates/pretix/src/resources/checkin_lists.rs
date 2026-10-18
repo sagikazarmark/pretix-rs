@@ -22,6 +22,7 @@ use crate::{Client, EventScope, Page, Request};
 
 /// A check-in list.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CheckinList {
     /// Internal ID of the check-in list.
@@ -65,6 +66,7 @@ pub struct CheckinList {
 
 /// Detailed status of a check-in list.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CheckinListStatus {
     /// Number of check-ins.
@@ -82,6 +84,7 @@ pub struct CheckinListStatus {
 
 /// The event in a [`CheckinListStatus`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CheckinListStatusEvent {
     /// Name of the event.
@@ -90,6 +93,7 @@ pub struct CheckinListStatusEvent {
 
 /// Statistics of one item in a [`CheckinListStatus`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CheckinListStatusItem {
     /// Name of the item.
@@ -109,6 +113,7 @@ pub struct CheckinListStatusItem {
 
 /// Statistics of one variation in a [`CheckinListStatusItem`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CheckinListStatusVariation {
     /// Name of the variation.
@@ -146,6 +151,7 @@ string_enum! {
 /// To exclude response fields (e.g. `checkin_count`, for performance), use
 /// [`CheckinLists::list_with`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListCheckinLists {
     /// The page to fetch (1-based).
@@ -175,6 +181,7 @@ pub struct ListCheckinLists {
 
 /// Query parameters for [`CheckinListPositions::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListCheckinListPositions {
     /// The page to fetch (1-based).
@@ -209,6 +216,7 @@ pub struct ListCheckinListPositions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub item_in: Vec<u64>,
     /// Only positions of this variation.
@@ -221,6 +229,7 @@ pub struct ListCheckinListPositions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub variation_in: Vec<u64>,
     /// Only positions with this attendee name (including their add-ons).
@@ -241,6 +250,7 @@ pub struct ListCheckinListPositions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub order_status_in: Vec<OrderStatus>,
     /// Only positions that have (`true`) or have not (`false`) been checked in.
@@ -256,6 +266,7 @@ pub struct ListCheckinListPositions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub subevent_in: Vec<u64>,
     /// Only add-ons to the position with this ID.
@@ -268,6 +279,7 @@ pub struct ListCheckinListPositions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub addon_to_in: Vec<u64>,
     /// Only positions with the voucher with this ID.
@@ -281,6 +293,7 @@ pub struct ListCheckinListPositions {
 
 /// Body of [`CheckinLists::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateCheckinList {
     /// Internal name of the check-in list.
@@ -325,6 +338,7 @@ pub struct CreateCheckinList {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateCheckinList {
     /// Internal name of the check-in list.
@@ -376,6 +390,7 @@ pub struct UpdateCheckinList {
 
 /// Body of [`CheckinLists::failed_checkins`]: a scan that failed offline.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateFailedCheckin {
     /// Why the scan failed.
@@ -408,6 +423,7 @@ pub struct CreateFailedCheckin {
 
 /// Body of [`CheckinListPositions::redeem`] and [`CheckinListPositions::redeem_secret`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct RedeemPosition {
     /// Whether the client can handle questions. **Must** be `false` if not.
