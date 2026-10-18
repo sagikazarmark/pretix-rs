@@ -1424,7 +1424,7 @@ dependencies = [
 
 [[package]]
 name = "pretix"
-version = "0.3.0"
+version = "0.4.0"
 dependencies = [
  "base64 0.23.1",
  "bon",
@@ -1449,7 +1449,7 @@ dependencies = [
 
 [[package]]
 name = "pretix-webhook"
-version = "0.3.0"
+version = "0.4.0"
 dependencies = [
  "axum",
  "base64 0.23.1",
@@ -1469,7 +1469,7 @@ dependencies = [
 
 [[package]]
 name = "pretix-webhook-cli"
-version = "0.3.0"
+version = "0.4.0"
 dependencies = [
  "axum",
  "clap",
@@ -1487,7 +1487,7 @@ dependencies = [
 
 [[package]]
 name = "pretix-webhook-events"
-version = "0.3.0"
+version = "0.4.0"
 dependencies = [
  "serde",
  "serde_json",
