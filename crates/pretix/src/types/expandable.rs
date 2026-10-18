@@ -7,6 +7,7 @@ use serde::{Deserialize, Serialize};
 /// {"id": 42, "name": …}   // Expandable::Expanded(..)
 /// ```
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[serde(untagged)]
 pub enum Expandable<I, T> {
     /// The ID (or other identifier) of the referenced object.

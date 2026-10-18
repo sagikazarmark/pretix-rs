@@ -10,6 +10,7 @@ use crate::{Client, ListParams, OrganizerScope, Page, Request};
 
 /// A device.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Device {
     /// Internal ID of the device within this organizer.
@@ -50,6 +51,7 @@ pub struct Device {
 
 /// Body of [`Devices::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateDevice {
     /// Device name.
@@ -69,6 +71,7 @@ pub struct CreateDevice {
 
 /// Body of [`Devices::update`]. Unset fields are left unchanged.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateDevice {
     /// Device name.

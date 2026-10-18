@@ -9,6 +9,7 @@ use crate::{Client, ListParams, OrganizerScope, Page, Request};
 
 /// A seating plan.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct SeatingPlan {
     /// Internal ID of the plan.
@@ -22,6 +23,7 @@ pub struct SeatingPlan {
 
 /// Body of [`SeatingPlans::create`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateSeatingPlan {
     /// Human-readable name of the plan.
@@ -33,6 +35,7 @@ pub struct CreateSeatingPlan {
 
 /// Body of [`SeatingPlans::update`]. Unset fields are left unchanged.
 #[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateSeatingPlan {
     /// Human-readable name of the plan.

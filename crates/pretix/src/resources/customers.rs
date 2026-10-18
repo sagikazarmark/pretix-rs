@@ -12,6 +12,7 @@ use crate::{Client, OrganizerScope, Page, Request};
 
 /// A customer account.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Customer {
     /// Internal ID of the customer.
@@ -46,6 +47,7 @@ pub struct Customer {
 
 /// Query parameters for [`Customers::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListCustomers {
     /// The page to fetch (1-based).
@@ -62,6 +64,7 @@ pub struct ListCustomers {
 
 /// Body of [`Customers::create`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateCustomer {
     /// External ID of the customer.
@@ -106,6 +109,7 @@ pub struct CreateCustomer {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateCustomer {
     /// External ID of the customer (not for customers created through SSO).

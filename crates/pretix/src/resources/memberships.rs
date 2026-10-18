@@ -10,6 +10,7 @@ use crate::{Client, OrganizerScope, Page, Request};
 
 /// A membership.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Membership {
     /// Internal ID of the membership.
@@ -31,6 +32,7 @@ pub struct Membership {
 
 /// Query parameters for [`Memberships::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListMemberships {
     /// The page to fetch (1-based).
@@ -53,6 +55,7 @@ pub struct ListMemberships {
 
 /// Body of [`Memberships::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateMembership {
     /// Internal ID of the membership type.
@@ -74,6 +77,7 @@ pub struct CreateMembership {
 
 /// Body of [`Memberships::update`]. Unset fields are left unchanged.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateMembership {
     /// Internal ID of the membership type.

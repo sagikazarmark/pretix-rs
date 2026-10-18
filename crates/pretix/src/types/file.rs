@@ -7,6 +7,7 @@ use serde::{Deserialize, Serialize};
 ///
 /// Pass it in place of a file URL when creating or updating resources.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[serde(transparent)]
 pub struct FileId(String);
 

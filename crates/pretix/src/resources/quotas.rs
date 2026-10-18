@@ -11,6 +11,7 @@ use crate::{Client, EventScope, Page, Request};
 
 /// A quota.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Quota {
     /// Internal ID of the quota.
@@ -48,6 +49,7 @@ pub struct Quota {
 
 /// Availability information of a quota, returned by [`Quotas::availability`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct QuotaAvailability {
     /// Whether the quota is available.
@@ -82,6 +84,7 @@ string_enum! {
 
 /// Query parameters for [`Quotas::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListQuotas {
     /// The page to fetch (1-based).
@@ -104,6 +107,7 @@ pub struct ListQuotas {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub subevent_in: Vec<u64>,
     /// Only quotas that include one of these items.
@@ -113,6 +117,7 @@ pub struct ListQuotas {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub items_in: Vec<u64>,
     /// Include `available` and `available_number` (slow).
@@ -122,6 +127,7 @@ pub struct ListQuotas {
 
 /// Body of [`Quotas::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateQuota {
     /// The internal name of the quota.
@@ -157,6 +163,7 @@ pub struct CreateQuota {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateQuota {
     /// The internal name of the quota.
@@ -199,6 +206,7 @@ pub struct UpdateQuota {
 
 /// Query parameters of [`Quotas::get_with`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct GetQuota {
     /// Include `available` and `available_number` (slow).

@@ -17,6 +17,7 @@ use crate::{Client, Download, EventScope, JobStatus, ListParams, OrganizerScope,
 
 /// An export method.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Exporter {
     /// Identifier of the exporter, used with [`Exporters::run`].
@@ -30,6 +31,7 @@ pub struct Exporter {
 
 /// An input field of an [`Exporter`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ExporterParameter {
     /// Name of the field.
@@ -43,6 +45,7 @@ pub struct ExporterParameter {
 
 /// A started background job producing a file (an export or rendered tickets).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ExportJob {
     /// Where to download the result. Responds with `409` while the job is running.

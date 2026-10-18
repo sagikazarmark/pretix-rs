@@ -15,6 +15,7 @@ use crate::{Client, EventScope, Page, Request};
 
 /// A question asked during checkout (or check-in).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Question {
     /// Internal ID of the question.
@@ -77,6 +78,7 @@ pub struct Question {
 
 /// An option of a choice question.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct QuestionOption {
     /// Internal ID of the option.
@@ -131,6 +133,7 @@ string_enum! {
 
 /// Query parameters for [`Questions::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListQuestions {
     /// The page to fetch (1-based).
@@ -157,6 +160,7 @@ pub struct ListQuestions {
 
 /// Query parameters for [`QuestionOptions::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListQuestionOptions {
     /// The page to fetch (1-based).
@@ -172,6 +176,7 @@ pub struct ListQuestionOptions {
 
 /// Body of [`Questions::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateQuestion {
     /// The field label shown to the customer.
@@ -259,6 +264,7 @@ pub struct CreateQuestion {
 /// Options cannot be changed here; use [`Questions::options`]. For nullable fields,
 /// `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateQuestion {
     /// The field label shown to the customer.
@@ -382,6 +388,7 @@ pub struct UpdateQuestion {
 /// Body of [`QuestionOptions::create`], also used for the options in
 /// [`CreateQuestion`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateQuestionOption {
     /// The displayed value of this option.
@@ -399,6 +406,7 @@ pub struct CreateQuestionOption {
 
 /// Body of [`QuestionOptions::update`]. Unset fields are left unchanged.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateQuestionOption {
     /// The displayed value of this option.

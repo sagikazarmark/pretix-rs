@@ -29,6 +29,7 @@ string_enum! {
 
 /// Query parameters for [`OrderPositions::list`] and [`OrganizerOrderPositions::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListOrderPositions {
     /// The page to fetch (1-based).
@@ -64,6 +65,7 @@ pub struct ListOrderPositions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub item_in: Vec<u64>,
     /// Only positions of this variation ID.
@@ -76,6 +78,7 @@ pub struct ListOrderPositions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub variation_in: Vec<u64>,
     /// Only positions with this attendee name (add-ons of such positions included).
@@ -100,6 +103,7 @@ pub struct ListOrderPositions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub order_status_in: Vec<OrderStatus>,
     /// Only positions that have (`true`) or have not (`false`) been checked in.
@@ -115,6 +119,7 @@ pub struct ListOrderPositions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub subevent_in: Vec<u64>,
     /// Only add-ons to the position with this ID.
@@ -127,6 +132,7 @@ pub struct ListOrderPositions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub addon_to_in: Vec<u64>,
     /// Only positions with the voucher with this ID.
@@ -146,6 +152,7 @@ pub struct ListOrderPositions {
 
 /// Query parameters for [`OrderPositions::get_with`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct GetOrderPosition {
     /// Allow fetching canceled positions (otherwise `404`).
@@ -161,6 +168,7 @@ pub struct GetOrderPosition {
 /// Set either `attendee_name` or `attendee_name_parts`. No invoice is created
 /// automatically.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateOrderPosition {
     /// Code of the order.
@@ -237,6 +245,7 @@ pub struct CreateOrderPosition {
 /// invoice automatically, and a new `secret` is neither sent to the customer nor
 /// added to the revocation list.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateOrderPosition {
     /// Attendee email address.
@@ -346,6 +355,7 @@ pub struct UpdateOrderPosition {
 
 /// Body of [`OrderPositions::printlog`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreatePrintLog {
     /// Time of printing.

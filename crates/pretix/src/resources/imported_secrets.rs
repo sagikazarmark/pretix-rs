@@ -10,6 +10,7 @@ use crate::{Client, EventScope, ListParams, Page, Request};
 
 /// An imported ticket secret.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ImportedSecret {
     /// Internal ID of the secret.
@@ -29,6 +30,7 @@ pub struct ImportedSecret {
 
 /// Body of [`ImportedSecrets::create`] and [`ImportedSecrets::bulk_create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateImportedSecret {
     /// The secret (QR code content).
@@ -52,6 +54,7 @@ pub struct CreateImportedSecret {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateImportedSecret {
     /// The secret (QR code content).

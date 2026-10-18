@@ -24,8 +24,11 @@ clippy:
     cargo hack clippy --workspace --each-feature --all-targets --locked -- --deny warnings
 
 # Run tests.
+# Each feature runs alone, so the `pretix` schema checks also run against the
+# plugin and hosted models.
 test:
     cargo hack test --workspace --each-feature --locked
+    cargo test --package pretix --features schemars,full --locked
 
 # Run rustdoc.
 [env("RUSTDOCFLAGS", "--deny warnings")]

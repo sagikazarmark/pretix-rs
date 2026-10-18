@@ -17,6 +17,7 @@ use crate::{Client, EventScope, ListParams, Page, Request};
 
 /// An exhibitor.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Exhibitor {
     /// Internal exhibitor ID.
@@ -60,6 +61,7 @@ pub struct Exhibitor {
 
 /// A lead scanned by an exhibitor.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Lead {
     /// Order code of the scanned attendee's order.
@@ -88,6 +90,7 @@ pub struct Lead {
 
 /// An attendee data field of a [`Lead`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct LeadField {
     /// Internal field ID, e.g. `attendee_name`.
@@ -103,6 +106,7 @@ pub struct LeadField {
 
 /// A part of a [`LeadField`] value.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct LeadFieldDetail {
     /// Human-readable label.
@@ -113,6 +117,7 @@ pub struct LeadFieldDetail {
 
 /// A voucher connected to an exhibitor.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ExhibitorVoucher {
     /// Comment shown to the exhibitor. Can only be changed with
@@ -126,6 +131,7 @@ pub struct ExhibitorVoucher {
 
 /// Body of [`Exhibitors::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateExhibitor {
     /// Exhibitor name.
@@ -183,6 +189,7 @@ pub struct CreateExhibitor {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateExhibitor {
     /// Exhibitor name.
@@ -255,6 +262,7 @@ pub struct UpdateExhibitor {
 /// Body of [`ExhibitorVouchers::attach`] and [`ExhibitorVouchers::bulk_attach`]: an existing voucher,
 /// identified by either `id` or `code`.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct AttachVoucher {
     /// Internal voucher ID. Set either this or `code`.

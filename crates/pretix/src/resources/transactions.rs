@@ -14,6 +14,7 @@ use crate::{Client, EventScope, OrganizerScope, Page, Request};
 
 /// A transaction (the "debit" side of an order).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Transaction {
     /// Internal ID of the transaction.
@@ -75,6 +76,7 @@ string_enum! {
 
 /// Query parameters for [`Transactions::list`] and [`OrganizerTransactions::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListTransactions {
     /// The page to fetch (1-based).
@@ -118,6 +120,7 @@ pub struct ListTransactions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub item_in: Vec<u64>,
     /// Only transactions of this variation ID.
@@ -130,6 +133,7 @@ pub struct ListTransactions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub variation_in: Vec<u64>,
     /// Only transactions of this sub-event ID.
@@ -142,6 +146,7 @@ pub struct ListTransactions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub subevent_in: Vec<u64>,
     /// Only transactions with this tax rule ID.
@@ -154,6 +159,7 @@ pub struct ListTransactions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub tax_rule_in: Vec<u64>,
     /// Only transactions with this tax code.
@@ -167,6 +173,7 @@ pub struct ListTransactions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub tax_code_in: Vec<String>,
     /// Only transactions with this tax rate.
@@ -179,6 +186,7 @@ pub struct ListTransactions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub tax_rate_in: Vec<Decimal>,
     /// Only transactions with this fee type.
@@ -191,6 +199,7 @@ pub struct ListTransactions {
         skip_serializing_if = "Vec::is_empty",
         with = "crate::serde_util::comma"
     )]
+    #[cfg_attr(feature = "schemars", schemars(with = "String"))]
     #[builder(default)]
     pub fee_type_in: Vec<FeeType>,
 }

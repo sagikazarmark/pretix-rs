@@ -12,6 +12,7 @@ use crate::{Client, ListParams, Page, Request};
 
 /// A reseller account.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Reseller {
     /// Reseller ID.
@@ -32,6 +33,7 @@ pub struct Reseller {
 
 /// An organizer account created with [`Resellers::create_organizer`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ResellerOrganizer {
     /// Internal organizer ID.
@@ -44,6 +46,7 @@ pub struct ResellerOrganizer {
 
 /// Body of [`Resellers::create_organizer`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateOrganizer {
     /// Name of the organizer.

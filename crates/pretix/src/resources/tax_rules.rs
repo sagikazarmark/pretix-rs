@@ -10,6 +10,7 @@ use crate::{Client, EventScope, ListParams, Page, Request};
 
 /// A tax rule of an event.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct TaxRule {
     /// Internal ID of the tax rule.
@@ -73,6 +74,7 @@ string_enum! {
 
 /// Body of [`TaxRules::create`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateTaxRule {
     /// The tax rule's name.
@@ -113,6 +115,7 @@ pub struct CreateTaxRule {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateTaxRule {
     /// The tax rule's name.

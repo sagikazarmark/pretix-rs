@@ -11,6 +11,7 @@ use crate::{Client, EventScope, ListParams, Page, Request};
 
 /// An auto check-in rule.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct AutoCheckinRule {
     /// Internal ID of the rule.
@@ -51,6 +52,7 @@ string_enum! {
 
 /// Body of [`AutoCheckinRules::create`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateAutoCheckinRule {
     /// ID of the check-in list (`None` = all matching lists).
@@ -87,6 +89,7 @@ pub struct CreateAutoCheckinRule {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateAutoCheckinRule {
     /// ID of the check-in list (`Some(None)` = all matching lists).

@@ -14,6 +14,7 @@ use crate::{Client, Download, EventScope, JobStatus, OrganizerScope, Page, Reque
 
 /// An invoice.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Invoice {
     /// Invoice number (with prefix).
@@ -139,6 +140,7 @@ pub struct Invoice {
 
 /// A line of an [`Invoice`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct InvoiceLine {
     /// Number of the line within the invoice.
@@ -232,6 +234,7 @@ string_enum! {
 
 /// Query parameters for [`Invoices::list`] and [`OrganizerInvoices::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListInvoices {
     /// The page to fetch (1-based).

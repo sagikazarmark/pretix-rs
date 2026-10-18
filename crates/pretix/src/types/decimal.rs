@@ -106,6 +106,34 @@ impl<'de> Deserialize<'de> for Decimal {
     }
 }
 
+/// Serializes as a string; deserializes from a string or a JSON number.
+#[cfg(feature = "schemars")]
+impl schemars::JsonSchema for Decimal {
+    fn schema_name() -> std::borrow::Cow<'static, str> {
+        "Decimal".into()
+    }
+
+    fn schema_id() -> std::borrow::Cow<'static, str> {
+        concat!(module_path!(), "::Decimal").into()
+    }
+
+    fn json_schema(generator: &mut schemars::SchemaGenerator) -> schemars::Schema {
+        let description = "A decimal number, transmitted as a string to avoid rounding.";
+        if generator.contract().is_serialize() {
+            schemars::json_schema!({
+                "description": description,
+                "type": "string",
+                "pattern": r"^-?[0-9]+(\.[0-9]+)?$",
+            })
+        } else {
+            schemars::json_schema!({
+                "description": description,
+                "type": ["string", "number"],
+            })
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::Decimal;

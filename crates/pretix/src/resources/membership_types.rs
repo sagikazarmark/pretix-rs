@@ -10,6 +10,7 @@ use crate::{Client, ListParams, OrganizerScope, Page, Request};
 
 /// A membership type.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct MembershipType {
     /// Internal ID of the membership type.
@@ -27,6 +28,7 @@ pub struct MembershipType {
 
 /// Body of [`MembershipTypes::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateMembershipType {
     /// Human-readable name.
@@ -47,6 +49,7 @@ pub struct CreateMembershipType {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateMembershipType {
     /// Human-readable name.

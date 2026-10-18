@@ -5,6 +5,7 @@ use serde_json::Value;
 
 /// Fields shared by every webhook payload emitted by pretix core.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub struct Notification {
     /// Pretix's identifier for this webhook delivery.
     pub notification_id: u64,
@@ -14,6 +15,7 @@ pub struct Notification {
 
 /// An identifier from a generic Django object relation.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[serde(untagged)]
 pub enum ResourceId {
     /// A numeric object identifier.
@@ -24,6 +26,7 @@ pub enum ResourceId {
 
 /// A webhook concerning an order.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub struct OrderEvent {
     #[serde(flatten)]
     /// Fields shared by every webhook payload.
@@ -38,6 +41,7 @@ pub struct OrderEvent {
 
 /// A ticket check-in or reverted check-in.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub struct CheckinEvent {
     #[serde(flatten)]
     /// The order and common notification fields for this check-in.
@@ -57,6 +61,7 @@ pub struct CheckinEvent {
 
 /// A webhook concerning the event itself.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub struct EventEvent {
     #[serde(flatten)]
     /// Fields shared by every webhook payload.
@@ -69,6 +74,7 @@ pub struct EventEvent {
 
 /// A webhook concerning a voucher.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub struct VoucherEvent {
     #[serde(flatten)]
     /// The affected event and common notification fields.
@@ -79,6 +85,7 @@ pub struct VoucherEvent {
 
 /// A webhook concerning a date in an event series.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub struct SubeventEvent {
     #[serde(flatten)]
     /// The affected event and common notification fields.
@@ -89,6 +96,7 @@ pub struct SubeventEvent {
 
 /// A webhook concerning an item or quota.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub struct ItemEvent {
     #[serde(flatten)]
     /// The affected event and common notification fields.
@@ -99,6 +107,7 @@ pub struct ItemEvent {
 
 /// A webhook concerning a waiting-list entry.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub struct WaitingListEvent {
     #[serde(flatten)]
     /// The affected event and common notification fields.
@@ -109,6 +118,7 @@ pub struct WaitingListEvent {
 
 /// A webhook concerning an organizer customer.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub struct CustomerEvent {
     #[serde(flatten)]
     /// Fields shared by every webhook payload.
@@ -121,6 +131,7 @@ pub struct CustomerEvent {
 
 /// A webhook concerning a gift card.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub struct GiftCardEvent {
     #[serde(flatten)]
     /// Fields shared by every webhook payload.
@@ -135,6 +146,7 @@ pub struct GiftCardEvent {
 
 /// A webhook concerning a gift-card transaction.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub struct GiftCardTransactionEvent {
     #[serde(flatten)]
     /// The affected gift card and common notification fields.
@@ -147,6 +159,7 @@ pub struct GiftCardTransactionEvent {
 
 /// A plugin-defined or future pretix payload.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub struct UnknownEvent {
     #[serde(flatten)]
     /// The required common notification envelope.

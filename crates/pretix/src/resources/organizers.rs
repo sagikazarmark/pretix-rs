@@ -12,6 +12,7 @@ use crate::{Client, Page, Request};
 
 /// An organizer account.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Organizer {
     /// Full name of the organization or company.
@@ -38,6 +39,7 @@ string_enum! {
 
 /// Query parameters for [`Organizers::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListOrganizers {
     /// The page to fetch (1-based).
@@ -54,6 +56,7 @@ pub struct ListOrganizers {
 
 /// Body of [`Organizers::update`]. Only `plugins` can be changed.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateOrganizer {
     /// Package names of the plugins to enable.

@@ -10,6 +10,7 @@ use crate::{Client, ListParams, OrganizerScope, Page, Request};
 
 /// A sales channel.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct SalesChannel {
     /// Identifier of the sales channel. Equals `type` for types that allow only one
@@ -35,6 +36,7 @@ string_enum! {
 
 /// Body of [`SalesChannels::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateSalesChannel {
     /// Identifier of the sales channel, e.g. `api.custom`.
@@ -56,6 +58,7 @@ pub struct CreateSalesChannel {
 ///
 /// `identifier` and `type` cannot be changed.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateSalesChannel {
     /// Human-readable name.

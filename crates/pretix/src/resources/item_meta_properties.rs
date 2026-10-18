@@ -9,6 +9,7 @@ use crate::{Client, EventScope, ListParams, Page, Request};
 
 /// An item meta property.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ItemMetaProperty {
     /// Unique ID for this property.
@@ -26,6 +27,7 @@ pub struct ItemMetaProperty {
 
 /// Body of [`ItemMetaProperties::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateItemMetaProperty {
     /// Name of the property.
@@ -47,6 +49,7 @@ pub struct CreateItemMetaProperty {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateItemMetaProperty {
     /// Name of the property.

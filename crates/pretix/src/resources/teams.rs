@@ -13,6 +13,7 @@ use crate::{Client, ListParams, OrganizerScope, Page, Request};
 
 /// A team: a group of users and API tokens sharing a set of permissions.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Team {
     /// Internal ID of the team.
@@ -42,6 +43,7 @@ pub struct Team {
 
 /// A user who is a member of a team.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct TeamMember {
     /// Internal ID of the user.
@@ -56,6 +58,7 @@ pub struct TeamMember {
 
 /// A pending invitation to a team.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct TeamInvite {
     /// Internal ID of the invite.
@@ -70,6 +73,7 @@ pub struct TeamInvite {
 
 /// An API token of a team.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct TeamToken {
     /// Internal ID of the token.
@@ -147,6 +151,7 @@ string_enum! {
 
 /// Body of [`Teams::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateTeam {
     /// Team name.
@@ -216,6 +221,7 @@ pub struct CreateTeam {
 
 /// Body of [`Teams::update`]. Unset fields are left unchanged.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateTeam {
     /// Team name.
@@ -286,6 +292,7 @@ pub struct UpdateTeam {
 
 /// Body of [`TeamInvites::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateTeamInvite {
     /// The invitee's email address.
@@ -295,6 +302,7 @@ pub struct CreateTeamInvite {
 
 /// Body of [`TeamTokens::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateTeamToken {
     /// Name of the token.

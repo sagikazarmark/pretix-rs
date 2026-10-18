@@ -15,6 +15,7 @@ use crate::types::Decimal;
 /// sales channels, add-on rules or prices, and does not calculate fees. See the pretix
 /// documentation before using it.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateOrder {
     /// Order code (only `A-Z` and `0-9`, without `O` and `1`). Generated if unset.
@@ -128,6 +129,7 @@ pub struct CreateOrder {
 ///
 /// Set either `attendee_name` or `attendee_name_parts`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct NewOrderPosition {
     /// Number of the position within the order. Required when using `addon_to`:
@@ -228,6 +230,7 @@ pub struct NewOrderPosition {
 
 /// A fee in [`CreateOrder`] or in [`ChangeOrder::create_fees`](super::ChangeOrder).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct NewOrderFee {
     /// Type of fee.

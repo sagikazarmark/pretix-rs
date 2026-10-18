@@ -7,6 +7,7 @@ use crate::{Client, ListParams, Page, Request};
 
 /// A product included in another product (bundle configuration).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ItemBundle {
     /// Internal ID of the bundle configuration. Not included when embedded in an
@@ -27,6 +28,7 @@ pub struct ItemBundle {
 /// Body of [`ItemBundles::create`], also used for the initial bundles in
 /// [`CreateItem`](super::CreateItem).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateItemBundle {
     /// ID of the included item.
@@ -46,6 +48,7 @@ pub struct CreateItemBundle {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateItemBundle {
     /// ID of the included item.

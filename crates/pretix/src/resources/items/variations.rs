@@ -10,6 +10,7 @@ use crate::{Client, Page, Request};
 
 /// A variation of an item, e.g. a size or color.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ItemVariation {
     /// Internal ID of the variation.
@@ -74,6 +75,7 @@ pub struct ItemVariation {
 
 /// Query parameters for [`ItemVariations::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListItemVariations {
     /// The page to fetch (1-based).
@@ -94,6 +96,7 @@ pub struct ListItemVariations {
 /// Body of [`ItemVariations::create`], also used for the initial variations in
 /// [`CreateItem`](super::CreateItem).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateItemVariation {
     /// The "name" of the variation.
@@ -169,6 +172,7 @@ pub struct CreateItemVariation {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateItemVariation {
     /// The "name" of the variation.

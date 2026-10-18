@@ -14,6 +14,7 @@ use crate::{Client, EventScope, OrganizerScope, Page, Request};
 
 /// A date of an event series (sub-event).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct SubEvent {
     /// Internal ID of the sub-event.
@@ -75,6 +76,7 @@ pub struct SubEvent {
 
 /// Price and availability override of an item for a sub-event.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct SubEventItemPriceOverride {
     /// The internal item ID.
@@ -95,6 +97,7 @@ pub struct SubEventItemPriceOverride {
 
 /// Price and availability override of a variation for a sub-event.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct SubEventVariationPriceOverride {
     /// The internal variation ID.
@@ -127,6 +130,7 @@ string_enum! {
 
 /// Query parameters for [`SubEvents::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListSubEvents {
     /// The page to fetch (1-based).
@@ -186,6 +190,7 @@ pub struct ListSubEvents {
 
 /// Query parameters for [`OrganizerSubEvents::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListOrganizerSubEvents {
     /// The page to fetch (1-based).
@@ -255,6 +260,7 @@ pub struct ListOrganizerSubEvents {
 
 /// Body of [`SubEvents::create`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateSubEvent {
     /// The sub-event's full name.
@@ -320,6 +326,7 @@ pub struct CreateSubEvent {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateSubEvent {
     /// The sub-event's full name.

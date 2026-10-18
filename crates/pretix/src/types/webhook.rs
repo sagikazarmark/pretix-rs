@@ -10,6 +10,7 @@ use serde_json::{Map, Value};
 /// {"notification_id": 123455, "organizer": "acmecorp", "event": "democon", "code": "ABC23", "action": "pretix.event.order.placed"}
 /// ```
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct WebhookNotification {
     /// Unique ID of the notification. pretix may deliver a notification more than once.

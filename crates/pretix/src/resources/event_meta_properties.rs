@@ -10,6 +10,7 @@ use crate::{Client, ListParams, OrganizerScope, Page, Request};
 
 /// An event meta property.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct EventMetaProperty {
     /// Unique ID for this property.
@@ -38,6 +39,7 @@ pub struct EventMetaProperty {
 
 /// A permitted value of an [`EventMetaProperty`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct EventMetaPropertyChoice {
     /// Internal name of the value.
@@ -53,6 +55,7 @@ pub struct EventMetaPropertyChoice {
 
 /// Body of [`EventMetaProperties::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateEventMetaProperty {
     /// Name of the property.
@@ -86,6 +89,7 @@ pub struct CreateEventMetaProperty {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateEventMetaProperty {
     /// Name of the property.

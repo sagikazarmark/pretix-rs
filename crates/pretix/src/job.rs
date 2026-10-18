@@ -12,6 +12,7 @@ use crate::{Client, Download, Error, Request, Result};
 /// Obtained by polling a job once. Use [`Request::wait`] to poll until the job
 /// finishes, or poll manually (e.g. with durable timers between polls).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub enum JobStatus<T> {
     /// The job is queued or running (`409 Conflict`). Poll again later.

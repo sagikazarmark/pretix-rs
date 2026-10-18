@@ -12,6 +12,7 @@ use crate::{Client, EventScope, Page, Request};
 
 /// A discount rule.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Discount {
     /// Internal ID of the discount rule.
@@ -94,6 +95,7 @@ string_enum! {
 
 /// Query parameters for [`Discounts::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListDiscounts {
     /// The page to fetch (1-based).
@@ -113,6 +115,7 @@ pub struct ListDiscounts {
 
 /// Body of [`Discounts::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateDiscount {
     /// A name for the rule used in the backend.
@@ -187,6 +190,7 @@ pub struct CreateDiscount {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateDiscount {
     /// A name for the rule used in the backend.

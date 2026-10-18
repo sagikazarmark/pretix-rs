@@ -16,6 +16,7 @@ use crate::{Client, Download, EventScope, JobStatus, Request};
 
 /// A certificate being generated, returned by [`Certificates::start`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CertificateJob {
     /// The URL to poll for the PDF (contains the `result` ID).

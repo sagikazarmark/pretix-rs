@@ -9,6 +9,7 @@ use crate::{Client, EventScope, ListParams, Page, Request};
 
 /// A PDF badge layout.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct BadgeLayout {
     /// Internal layout ID.
@@ -28,6 +29,7 @@ pub struct BadgeLayout {
 
 /// An assignment of a product to a [`BadgeLayout`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct BadgeLayoutAssignment {
     /// Item ID.
@@ -36,6 +38,7 @@ pub struct BadgeLayoutAssignment {
 
 /// An assignment of a product to a layout, as listed by [`BadgeItems::list`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct BadgeItem {
     /// Internal ID of the assignment.

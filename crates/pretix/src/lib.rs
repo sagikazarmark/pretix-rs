@@ -48,6 +48,10 @@
 //! - `plugins`: endpoints of pretix plugins that are not bundled with pretix.
 //! - `hosted`: endpoints only available on pretix Hosted.
 //! - `full`: everything above except TLS selection.
+//! - `schemars`: implements `schemars::JsonSchema` for every serializable type (responses,
+//!   query parameters and request bodies), e.g. for Restate handler inputs and outputs.
+//!   The schemas describe the JSON (de)serialization: decimals are strings, enum-like
+//!   fields list their known values but accept any string.
 
 #![cfg_attr(docsrs, feature(doc_cfg))]
 #![allow(

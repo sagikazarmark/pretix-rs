@@ -34,7 +34,13 @@ pub enum WebhookEventKind {
 }
 
 /// A typed pretix webhook payload.
+///
+/// With the `schemars` feature, the JSON Schema is the union of every payload
+/// shape, matching the serialized form. Unknown payloads accept any valid
+/// envelope, so the schema does not identify a unique variant: the `action`
+/// field selects one when deserializing.
 #[derive(Clone, Debug, Eq, PartialEq)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema), schemars(untagged))]
 pub enum WebhookEvent {
     /// An order lifecycle payload.
     Order(OrderEvent),

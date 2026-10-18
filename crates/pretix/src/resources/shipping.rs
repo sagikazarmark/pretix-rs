@@ -12,6 +12,7 @@ use crate::{Client, EventScope, OrganizerScope, Page, Request};
 
 /// The shipping address of an order.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ShippingAddress {
     /// Company name.
@@ -34,6 +35,7 @@ pub struct ShippingAddress {
 
 /// The shipping status of an order.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ShippingStatus {
     /// Internal ID of the shipping method.
@@ -46,6 +48,7 @@ pub struct ShippingStatus {
 
 /// An order whose tickets need to be printed.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct PrintJob {
     /// Event slug.
@@ -61,6 +64,7 @@ pub struct PrintJob {
 
 /// The ticket file of the next print job, returned by [`PrintJobs::poll`].
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct PolledPrintJob {
     /// The order code (`X-Pretix-Order-Code` header). Pass it to [`PrintJobs::ack`]
@@ -94,6 +98,7 @@ string_enum! {
 
 /// Query parameters for [`PrintJobs::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListPrintJobs {
     /// The page to fetch (1-based).
@@ -117,6 +122,7 @@ pub struct ListPrintJobs {
 
 /// Query parameters for [`PrintJobs::poll`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct PollPrintJobs {
     /// Only jobs with one of these shipping method types.

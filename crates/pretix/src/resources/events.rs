@@ -15,6 +15,7 @@ use crate::{Client, OrganizerScope, Page, Request};
 
 /// An event.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct Event {
     /// The event's full name.
@@ -96,6 +97,7 @@ string_enum! {
 
 /// Query parameters for [`Events::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListEvents {
     /// The page to fetch (1-based).
@@ -163,6 +165,7 @@ pub struct ListEvents {
 ///
 /// Events cannot be created live.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateEvent {
     /// The event's full name.
@@ -238,6 +241,7 @@ pub struct CreateEvent {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateEvent {
     /// The event's full name.

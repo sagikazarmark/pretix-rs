@@ -21,6 +21,7 @@ string_enum! {
 /// Body of [`Orders::change`](super::Orders::change): multiple changes performed in one
 /// transaction.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ChangeOrder {
     /// Positions to change.
@@ -65,6 +66,7 @@ pub struct ChangeOrder {
 
 /// A position change in [`ChangeOrder`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct PatchPosition {
     /// ID of the order position.
@@ -76,6 +78,7 @@ pub struct PatchPosition {
 /// Changed values of a position in [`PatchPosition`]. Unset fields are left
 /// unchanged; for nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct PositionChanges {
     /// ID of the item.
@@ -122,6 +125,7 @@ pub struct PositionChanges {
 
 /// A position to cancel in [`ChangeOrder`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CancelPosition {
     /// ID of the order position.
@@ -130,6 +134,7 @@ pub struct CancelPosition {
 
 /// A position to split into a new order in [`ChangeOrder`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct SplitPosition {
     /// ID of the order position.
@@ -141,6 +146,7 @@ pub struct SplitPosition {
 ///
 /// Set either `attendee_name` or `attendee_name_parts`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct AddPosition {
     /// `positionid` of the parent position, for add-ons.
@@ -210,6 +216,7 @@ pub struct AddPosition {
 
 /// A fee change in [`ChangeOrder`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct PatchFee {
     /// ID of the fee.
@@ -220,6 +227,7 @@ pub struct PatchFee {
 
 /// Changed values of a fee in [`PatchFee`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct FeeChanges {
     /// Fee amount.
@@ -229,6 +237,7 @@ pub struct FeeChanges {
 
 /// A fee to cancel in [`ChangeOrder`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CancelFee {
     /// ID of the fee.

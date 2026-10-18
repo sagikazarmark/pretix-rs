@@ -140,6 +140,15 @@
 //! Payloads with a missing or invalid common envelope are rejected. Known
 //! actions are also validated against their typed payload and are rejected when
 //! required fields are missing or have the wrong type.
+//!
+//! # Feature flags
+//!
+//! The default feature set is empty. The `schemars` feature implements
+//! [`schemars::JsonSchema`](https://docs.rs/schemars/1/schemars/trait.JsonSchema.html)
+//! for [`WebhookEvent`] and every payload type, so they can be used where a
+//! JSON Schema is required, such as Restate handler inputs and outputs.
+
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
 mod event;
 mod payload;

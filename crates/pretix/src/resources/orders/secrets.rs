@@ -10,6 +10,7 @@ use crate::{Client, EventScope, Page, Request};
 
 /// A revoked ticket secret (needed for validation with some secret generators).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct RevokedSecret {
     /// Internal ID.
@@ -22,6 +23,7 @@ pub struct RevokedSecret {
 
 /// A currently or formerly blocked ticket secret.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct BlockedSecret {
     /// Internal ID.
@@ -46,6 +48,7 @@ string_enum! {
 
 /// Query parameters for [`RevokedSecrets::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListRevokedSecrets {
     /// The page to fetch (1-based).
@@ -67,6 +70,7 @@ pub struct ListRevokedSecrets {
 
 /// Query parameters for [`BlockedSecrets::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListBlockedSecrets {
     /// The page to fetch (1-based).

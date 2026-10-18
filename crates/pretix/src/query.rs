@@ -10,6 +10,7 @@ use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
 /// Query parameters for list endpoints that only support pagination.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListParams {
     /// The page to fetch (1-based).
@@ -25,9 +26,10 @@ pub struct ListParams {
 /// `E` is a resource specific enum of expandable fields. Used as the parameter of
 /// `…_with` endpoint methods (e.g. `get_with(id, &Expand::new([…]))`).
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub struct Expand<E> {
     /// Fields to expand.
-    #[serde(default = "Vec::new", skip_serializing_if = "Vec::is_empty")]
+    #[serde(default = "Vec::<E>::new", skip_serializing_if = "Vec::is_empty")]
     pub expand: Vec<E>,
 }
 
@@ -57,6 +59,7 @@ impl<E> FromIterator<E> for Expand<E> {
 /// Selecting fields changes the shape of responses, so endpoints that support it return
 /// `serde_json::Value` from their `…_with` variants.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Hash, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct FieldSelection {
     /// Only include these fields (dotted paths for nested fields, e.g. `positions.id`).
@@ -133,6 +136,31 @@ impl<'de, F: FromStr> Deserialize<'de> for Ordering<F> {
     }
 }
 
+/// A field name, prefixed with `-` for descending order.
+///
+/// The schema is the same for every `F`, so it does not depend on `F`.
+#[cfg(feature = "schemars")]
+impl<F> schemars::JsonSchema for Ordering<F> {
+    fn inline_schema() -> bool {
+        true
+    }
+
+    fn schema_name() -> std::borrow::Cow<'static, str> {
+        "Ordering".into()
+    }
+
+    fn schema_id() -> std::borrow::Cow<'static, str> {
+        concat!(module_path!(), "::Ordering").into()
+    }
+
+    fn json_schema(_generator: &mut schemars::SchemaGenerator) -> schemars::Schema {
+        schemars::json_schema!({
+            "description": "A field name, prefixed with `-` for descending order.",
+            "type": "string",
+        })
+    }
+}
+
 /// Filters on event meta data (`attr[<key>]=<value>` query parameters).
 ///
 /// Use with `#[serde(flatten)]` in list parameters. An empty value matches objects
@@ -203,6 +231,34 @@ impl<'de> Deserialize<'de> for AttrFilters {
         }
 
         deserializer.deserialize_map(AttrVisitor)
+    }
+}
+
+/// An object of `attr[<key>]` string properties, to be flattened into list parameters.
+#[cfg(feature = "schemars")]
+impl schemars::JsonSchema for AttrFilters {
+    fn inline_schema() -> bool {
+        true
+    }
+
+    fn schema_name() -> std::borrow::Cow<'static, str> {
+        "AttrFilters".into()
+    }
+
+    fn schema_id() -> std::borrow::Cow<'static, str> {
+        concat!(module_path!(), "::AttrFilters").into()
+    }
+
+    fn json_schema(_generator: &mut schemars::SchemaGenerator) -> schemars::Schema {
+        schemars::json_schema!({
+            "type": "object",
+            "patternProperties": {
+                r"^attr\[.*\]$": {
+                    "description": "Filter on an event meta data value (`attr[<key>]`).",
+                    "type": "string",
+                },
+            },
+        })
     }
 }
 

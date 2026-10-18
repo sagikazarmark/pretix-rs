@@ -13,6 +13,7 @@ use crate::{Client, ListParams, Page, Request};
 /// Recommended only for refunds with payment provider `manual`; amounts are not
 /// checked.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateOrderRefund {
     /// Refund state.
@@ -47,6 +48,7 @@ pub struct CreateOrderRefund {
 
 /// Body of [`OrderRefunds::process`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ProcessRefund {
     /// Cancel the order (`true`) or mark it as pending (`false`).

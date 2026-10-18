@@ -12,6 +12,7 @@ use crate::{Client, OrganizerScope, Page, Request};
 
 /// A bank import job: a batch of uploaded bank transactions.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct BankImportJob {
     /// Internal job ID.
@@ -35,6 +36,7 @@ pub struct BankImportJob {
 /// `payer` and `reference` are emptied once the transaction is matched to an order or
 /// discarded; `checksum` persists for deduplication.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct BankTransaction {
     /// Transaction state.
@@ -102,6 +104,7 @@ string_enum! {
 
 /// Query parameters for [`BankImportJobs::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListBankImportJobs {
     /// The page to fetch (1-based).
@@ -121,6 +124,7 @@ pub struct ListBankImportJobs {
 
 /// Body of [`BankImportJobs::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateBankImportJob {
     /// Slug of the event the transactions belong to. Without an event, transactions
@@ -139,6 +143,7 @@ pub struct CreateBankImportJob {
 
 /// A transaction in [`CreateBankImportJob`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateBankTransaction {
     /// Payment source.

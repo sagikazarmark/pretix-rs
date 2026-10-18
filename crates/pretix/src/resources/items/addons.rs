@@ -6,6 +6,7 @@ use crate::{Client, ListParams, Page, Request};
 
 /// Add-on configuration: a category of products that can be added to an item.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ItemAddOn {
     /// Internal ID of the add-on. Not included when embedded in an
@@ -29,6 +30,7 @@ pub struct ItemAddOn {
 /// Body of [`ItemAddOns::create`], also used for the initial add-ons in
 /// [`CreateItem`](super::CreateItem).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateItemAddOn {
     /// ID of the item category the add-ons can be chosen from.
@@ -52,6 +54,7 @@ pub struct CreateItemAddOn {
 
 /// Body of [`ItemAddOns::update`]. Unset fields are left unchanged.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateItemAddOn {
     /// ID of the item category the add-ons can be chosen from.

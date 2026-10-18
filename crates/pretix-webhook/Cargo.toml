@@ -12,6 +12,8 @@ categories = ["web-programming::http-server"]
 [features]
 default = []
 tracing = ["dep:tracing"]
+## Implement `schemars::JsonSchema` for `pretix-webhook-events` payload types.
+schemars = ["pretix-webhook-events/schemars"]
 
 [dependencies]
 pretix-webhook-events = { workspace = true }

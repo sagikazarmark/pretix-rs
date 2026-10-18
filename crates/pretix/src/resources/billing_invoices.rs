@@ -14,6 +14,7 @@ use crate::{Client, Download, JobStatus, OrganizerScope, Page, Request};
 
 /// An invoice issued by pretix Hosted to the organizer.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct BillingInvoice {
     /// Invoice number.
@@ -32,6 +33,7 @@ string_enum! {
 
 /// Query parameters for [`BillingInvoices::list`].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct ListBillingInvoices {
     /// The page to fetch (1-based).

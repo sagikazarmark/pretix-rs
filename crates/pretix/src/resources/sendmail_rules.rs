@@ -14,6 +14,7 @@ use crate::{Client, EventScope, ListParams, Page, Request};
 
 /// A rule that sends emails automatically at a specific point in time.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct SendmailRule {
     /// Internal ID of the rule.
@@ -97,6 +98,7 @@ string_enum! {
 
 /// Body of [`SendmailRules::create`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct CreateSendmailRule {
     /// Email subject.
@@ -150,6 +152,7 @@ pub struct CreateSendmailRule {
 ///
 /// For nullable fields, `Some(None)` clears the value.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, bon::Builder)]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[non_exhaustive]
 pub struct UpdateSendmailRule {
     /// If `false`, the rule is ignored.

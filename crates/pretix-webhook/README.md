@@ -105,6 +105,13 @@ processing. The `pretix_webhook` span contains the request URI path and the
 event's notification ID, action, organizer, event, and kind once parsing
 succeeds. Records emitted by the handler inherit this span.
 
+## JSON Schema
+
+Enable the `schemars` feature to implement `schemars::JsonSchema` for
+`WebhookEvent` and the other `pretix-webhook-events` payload types, for example
+to forward events to Restate handlers. It enables the `schemars` feature of
+`pretix-webhook-events`.
+
 ## License
 
 Licensed under either of
