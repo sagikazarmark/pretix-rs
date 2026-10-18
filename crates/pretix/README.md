@@ -26,9 +26,8 @@ This project is not affiliated with rami.io GmbH.
 
 ## Usage
 
-```toml
-[dependencies]
-pretix = "0.3"
+```sh
+cargo add pretix
 ```
 
 ```rust,no_run

@@ -69,7 +69,7 @@ async fn start_without_following_redirects() {
     let client = pretix::Client::builder()
         .base_url(format!("{}/api/v1/", server.uri()))
         .token("secret")
-        .http_client(
+        .client(
             reqwest::Client::builder()
                 .redirect(reqwest::redirect::Policy::none())
                 .build()

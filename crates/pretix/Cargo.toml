@@ -24,6 +24,8 @@ hosted = []
 full = ["plugins", "hosted"]
 ## Implement `schemars::JsonSchema` for model types (e.g. for Restate handlers).
 schemars = ["dep:schemars"]
+## Send requests through a `reqwest_middleware::ClientWithMiddleware`.
+reqwest-middleware = ["dep:reqwest-middleware"]
 
 [dependencies]
 base64 = { workspace = true }
@@ -34,6 +36,7 @@ http = { workspace = true }
 jiff = { version = "0.2", features = ["serde"] }
 percent-encoding = "2.3"
 reqwest = { version = "0.13", default-features = false, features = ["charset", "http2", "system-proxy"] }
+reqwest-middleware = { version = "0.5", optional = true }
 rust_decimal = { version = "1.43", default-features = false, features = ["std"] }
 schemars = { workspace = true, optional = true, features = ["jiff02", "url2"] }
 secrecy = "0.10"
