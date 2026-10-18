@@ -21,9 +21,8 @@ All crates are released together and share a version number.
 
 ## API client
 
-```toml
-[dependencies]
-pretix = "0.3"
+```sh
+cargo add pretix
 ```
 
 ```rust,no_run
@@ -50,12 +49,9 @@ covered in the [`pretix` README](crates/pretix).
 
 ## Webhooks
 
-```toml
-[dependencies]
-pretix-webhook = "0.3"
-pretix-webhook-events = "0.3"
-axum = "0.8"
-tokio = { version = "1", features = ["macros", "net", "rt-multi-thread"] }
+```sh
+cargo add pretix-webhook pretix-webhook-events axum
+cargo add tokio --features macros,net,rt-multi-thread
 ```
 
 ```rust,no_run
