@@ -5,6 +5,8 @@
 mod support;
 
 mod core;
+#[cfg(feature = "reqwest-middleware")]
+mod middleware;
 
 mod auto_checkin_rules;
 mod badges;

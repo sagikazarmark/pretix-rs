@@ -242,19 +242,26 @@ impl fmt::Display for ApiError {
 
 impl std::error::Error for ApiError {}
 
+/// The error type of the HTTP client requests are sent through.
+#[cfg(not(feature = "reqwest-middleware"))]
+type HttpError = reqwest::Error;
+/// The error type of the HTTP client requests are sent through.
+#[cfg(feature = "reqwest-middleware")]
+type HttpError = reqwest_middleware::Error;
+
 /// A failure while sending a request or receiving a response.
 #[derive(Debug, thiserror::Error)]
 #[error("HTTP transport error ({}): {source}", self.kind())]
 pub struct TransportError {
     #[source]
-    source: reqwest::Error,
+    source: HttpError,
     repeatable: bool,
 }
 
 impl TransportError {
-    pub(crate) fn new(source: reqwest::Error) -> Self {
+    pub(crate) fn new(source: impl Into<HttpError>) -> Self {
         Self {
-            source,
+            source: source.into(),
             repeatable: false,
         }
     }
@@ -265,7 +272,9 @@ impl TransportError {
     }
 
     fn kind(&self) -> &'static str {
-        if self.is_timeout() {
+        if self.is_middleware() {
+            "middleware"
+        } else if self.is_timeout() {
             "timeout"
         } else if self.is_connect() {
             "connect"
@@ -274,6 +283,19 @@ impl TransportError {
         } else {
             "request"
         }
+    }
+
+    /// Whether the error was raised by a middleware rather than the HTTP client.
+    #[cfg(feature = "reqwest-middleware")]
+    #[must_use]
+    pub fn is_middleware(&self) -> bool {
+        self.source.is_middleware()
+    }
+
+    #[cfg(not(feature = "reqwest-middleware"))]
+    #[allow(clippy::unused_self)]
+    fn is_middleware(&self) -> bool {
+        false
     }
 
     /// Whether the error is a timeout.
@@ -289,9 +311,11 @@ impl TransportError {
     }
 
     /// Whether the same request may succeed later. See [`Error::is_transient`].
+    ///
+    /// Errors raised by middleware are opaque and therefore never considered transient.
     #[must_use]
     pub fn is_transient(&self) -> bool {
-        !self.source.is_builder() && !self.source.is_redirect()
+        !self.is_middleware() && !self.source.is_builder() && !self.source.is_redirect()
     }
 
     /// Whether the request can be repeated safely and may then succeed. See

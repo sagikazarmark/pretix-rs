@@ -15,7 +15,25 @@ use crate::{Auth, Error, Result, RetryPolicy};
 
 const DEFAULT_BASE_URL: &str = "https://pretix.eu/api/v1/";
 const DEFAULT_USER_AGENT: &str = concat!("pretix-rs/", env!("CARGO_PKG_VERSION"));
+/// Total request timeout of the HTTP client built when none is configured.
 const DEFAULT_TIMEOUT: Duration = Duration::from_secs(60);
+
+/// The HTTP client requests are sent through.
+#[cfg(not(feature = "reqwest-middleware"))]
+type HttpClient = reqwest::Client;
+/// The HTTP client requests are sent through.
+#[cfg(feature = "reqwest-middleware")]
+type HttpClient = reqwest_middleware::ClientWithMiddleware;
+
+#[cfg(not(feature = "reqwest-middleware"))]
+fn wrap_client(client: reqwest::Client) -> HttpClient {
+    client
+}
+
+#[cfg(feature = "reqwest-middleware")]
+fn wrap_client(client: reqwest::Client) -> HttpClient {
+    HttpClient::from(client)
+}
 
 /// A client for the pretix REST API.
 ///
@@ -26,7 +44,7 @@ pub struct Client {
 }
 
 struct Inner {
-    http: reqwest::Client,
+    http: HttpClient,
     base_url: Url,
     authorization: HeaderValue,
     user_agent: HeaderValue,
@@ -178,12 +196,17 @@ impl Client {
             request = request.body(body.clone());
         }
 
-        let transport = |err| TransportError::new(err).with_repeatable(repeatable);
-        let response = request.send().await.map_err(transport)?;
+        let response = request
+            .send()
+            .await
+            .map_err(|err| TransportError::new(err).with_repeatable(repeatable))?;
         let url = response.url().clone();
         let status = response.status();
         let headers = response.headers().clone();
-        let body: Bytes = response.bytes().await.map_err(transport)?;
+        let body: Bytes = response
+            .bytes()
+            .await
+            .map_err(|err| TransportError::new(err).with_repeatable(repeatable))?;
         Ok(RawResponse {
             url,
             status,
@@ -213,18 +236,19 @@ pub struct ClientBuilder {
     base_url: Option<String>,
     auth: Option<Auth>,
     retry: Option<RetryPolicy>,
-    http: Option<reqwest::Client>,
+    client: Option<HttpClient>,
     user_agent: Option<String>,
-    timeout: Option<Duration>,
 }
 
 impl ClientBuilder {
     /// Sets the API root. Defaults to `https://pretix.eu/api/v1/`.
     ///
-    /// For self-hosted instances pass e.g. `https://tickets.example.com/api/v1/`. If
-    /// only an origin is given (`https://tickets.example.com`), `/api/v1/` is appended.
-    pub fn base_url(mut self, base_url: impl Into<String>) -> Self {
-        self.base_url = Some(base_url.into());
+    /// Accepts anything string-like, including [`Url`]. For self-hosted instances pass
+    /// e.g. `https://tickets.example.com/api/v1/`. If only an origin is given
+    /// (`https://tickets.example.com`), `/api/v1/` is appended. The URL is validated by
+    /// [`ClientBuilder::build`].
+    pub fn base_url(mut self, base_url: impl AsRef<str>) -> Self {
+        self.base_url = Some(base_url.as_ref().to_owned());
         self
     }
 
@@ -245,14 +269,27 @@ impl ClientBuilder {
         self
     }
 
-    /// Uses a preconfigured HTTP client (proxies, custom TLS, …).
+    /// Uses a preconfigured HTTP client (timeouts, proxies, custom TLS, …).
     ///
-    /// Cannot be combined with [`ClientBuilder::timeout`]; configure the timeout on the
-    /// HTTP client instead. The client should not follow redirects
+    /// Without it, a client with a 60 second total request timeout is used. A custom
+    /// client is used as is, so configure a timeout on it: `reqwest` has none by
+    /// default. The client should not follow redirects
     /// (`reqwest::redirect::Policy::none()`): redirected `POST`s are re-sent as `GET`s
     /// by HTTP clients, which could make failed actions look successful.
-    pub fn http_client(mut self, client: reqwest::Client) -> Self {
-        self.http = Some(client);
+    pub fn client(mut self, client: reqwest::Client) -> Self {
+        self.client = Some(wrap_client(client));
+        self
+    }
+
+    /// Uses a preconfigured HTTP client with middleware (tracing, caching, …).
+    ///
+    /// Replaces any client set with [`ClientBuilder::client`]; the same caveats apply.
+    /// Middleware that retries requests compounds with the
+    /// [retry policy](ClientBuilder::retry_policy); consider
+    /// [`RetryPolicy::disabled`] when using one.
+    #[cfg(feature = "reqwest-middleware")]
+    pub fn middleware_client(mut self, client: reqwest_middleware::ClientWithMiddleware) -> Self {
+        self.client = Some(client);
         self
     }
 
@@ -262,19 +299,12 @@ impl ClientBuilder {
         self
     }
 
-    /// Sets the total request timeout of the default HTTP client. Defaults to 60 seconds.
-    pub fn timeout(mut self, timeout: Duration) -> Self {
-        self.timeout = Some(timeout);
-        self
-    }
-
     /// Builds the client.
     ///
     /// # Errors
     ///
     /// Returns [`Error::Config`] if the base URL, API token, or user agent is invalid,
-    /// no credentials are configured, a timeout is combined with a custom HTTP client,
-    /// or the default HTTP client cannot be built.
+    /// no credentials are configured, or the default HTTP client cannot be built.
     pub fn build(self) -> Result<Client> {
         let base_url = parse_base_url(self.base_url.as_deref().unwrap_or(DEFAULT_BASE_URL))?;
         let auth = self
@@ -283,18 +313,15 @@ impl ClientBuilder {
         let user_agent =
             HeaderValue::try_from(self.user_agent.as_deref().unwrap_or(DEFAULT_USER_AGENT))
                 .map_err(|_| Error::Config("invalid user agent".into()))?;
-        let http = match (self.http, self.timeout) {
-            (Some(_), Some(_)) => {
-                return Err(Error::Config(
-                    "`timeout` cannot be combined with a custom `http_client`".into(),
-                ));
-            }
-            (Some(http), None) => http,
-            (None, timeout) => reqwest::Client::builder()
-                .timeout(timeout.unwrap_or(DEFAULT_TIMEOUT))
-                .redirect(reqwest::redirect::Policy::none())
-                .build()
-                .map_err(|err| Error::Config(format!("failed to build HTTP client: {err}")))?,
+        let http = match self.client {
+            Some(client) => client,
+            None => wrap_client(
+                reqwest::Client::builder()
+                    .timeout(DEFAULT_TIMEOUT)
+                    .redirect(reqwest::redirect::Policy::none())
+                    .build()
+                    .map_err(|err| Error::Config(format!("failed to build HTTP client: {err}")))?,
+            ),
         };
         Ok(Client {
             inner: Arc::new(Inner {
@@ -355,13 +382,17 @@ mod tests {
     }
 
     #[test]
-    fn rejects_timeout_with_custom_http_client() {
-        let result = Client::builder()
+    fn accepts_url_as_base_url() {
+        let base_url = Url::parse("https://tickets.example.com").unwrap();
+        let client = Client::builder()
+            .base_url(&base_url)
             .token("t")
-            .timeout(Duration::from_secs(1))
-            .http_client(reqwest::Client::new())
-            .build();
-        assert!(matches!(result, Err(Error::Config(_))));
+            .build()
+            .unwrap();
+        assert_eq!(
+            client.base_url().as_str(),
+            "https://tickets.example.com/api/v1/"
+        );
     }
 
     #[test]

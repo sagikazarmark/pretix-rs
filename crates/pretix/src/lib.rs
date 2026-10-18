@@ -52,6 +52,9 @@
 //!   query parameters and request bodies), e.g. for Restate handler inputs and outputs.
 //!   The schemas describe the JSON (de)serialization: decimals are strings, enum-like
 //!   fields list their known values but accept any string.
+//! - `reqwest-middleware`: sends requests through a
+//!   `reqwest_middleware::ClientWithMiddleware`, configured with
+//!   `ClientBuilder::middleware_client`.
 
 #![cfg_attr(docsrs, feature(doc_cfg))]
 #![allow(
